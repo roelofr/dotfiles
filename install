@@ -1,9 +1,25 @@
 #!/usr/bin/env bash
 # vim: set ts=4 sw=4 sts=0 sta et :
 
+###
+#
+# Installs all dotfiles by symlinking them to this directory.
+#
+# Author: Roelof Roos
+# License: GPL-3
+#
+###
+
 dot_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-echo "Using \"${dot_dir}\" as base directory"
+C_ERR="$( tput setaf 1 )"
+C_INFO="$( tput setaf 2 )"
+C_COMMENT="$( tput setaf 3 )"
+C_NOTE="$( tput setaf 7 )"
+C_CMD="$( tput setaf 6 )"
+C_RES="$( tput sgr0 )"
+
+echo -e "${C_NOTE}Using \"${C_COMMENT}${dot_dir}${C_NOTE}\" as base directory${C_RES}"
 
 polybar_files=(config github.token launch.sh)
 i3_files=(bootclean.sh config screenshot)
@@ -13,7 +29,7 @@ font_files=(\
     fontawesome-pro-solid-900.otf \
     fontawesome-pro-regular-400.otf \
     fontawesome-pro-light-300.otf \
-)   
+)
 bin_files=$(find "${dot_dir}/bin/" -type f -printf '%f ')
 
 function map_files() {
@@ -21,8 +37,11 @@ function map_files() {
     target_dir="${HOME}/$2"
     shift 2
 
+    echo -e "\n${C_COMMENT}Installing ${C_INFO}$( basename "${source_dir}" )${C_COMMENT}...${C_RES}"
+
     if [ ! -d "$target_dir" ]; then
-        echo "Creating directory ${target_dir}"
+        echo "  ${C_NOTE}Creating directory ${C_INFO}${target_dir}${C_RES}"
+        echo "+ ${C_CMD}mkdir \"$target_dir\"${C_RES}"
         mkdir "$target_dir"
     fi
 
@@ -30,33 +49,31 @@ function map_files() {
 
     for file in $*
     do
+        echo -e "  ${C_NOTE}Evaluating ${C_INFO}${file}${C_NOTE}...${C_RES}"
         target="${target_dir}/$(basename "$file" )"
         if [ -f "$target" ]
         then
-            echo "File $(basename "$file") already exists, and is NOT a symlink"
+            echo "  ${C_NOTE}File ${C_INFO}$(basename "$file")${C_NOTE} already exists, but isn't a symlink!${C_RES}"
             continue
         fi
 
         if [ -N "$target" ]
         then
-            echo "File $(basename "$file") is already a symlink" 
+            echo "  ${C_NOTE}File ${C_INFO}$(basename "$file")${C_NOTE} already linked!${C_RES}"
             continue
         fi
 
         if [ ! -f "${source_dir}/${file}" ]
         then
-            echo "Source file $( basename "$file" ) not found"
+            echo "  ${C_ERR}Source file ${C_COMMENT}$( basename "$file" )${C_ERR} not found.${C_RES}"
             exit 255
         fi
-       
-        echo "Linking ${target} to ${source_dir}/${file}" 
-        echo "ln -s \"${source_dir}/${file}\" \"${target}\""
+
+        echo "  ${C_NOTE}Linking ${C_COMMENT}${target}${C_NOTE} to ${C_INFO}${source_dir}/${file}${C_NOTE}...${C_RES}"
+        echo "  + ${C_CMD}ln -s \"${source_dir}/${file}\" \"${target}\"${C_RES}"
         ln -s "${source_dir}/${file}" "${target}"
     done
 }
-
-
-set -e
 
 # Create links, and optionally directories
 # Polybar
@@ -76,6 +93,8 @@ map_files fonts ".local/share/fonts/" ${font_files[@]}
 map_files "bin" "bin" ${bin_files[@]}
 
 # Create some mandatory files
-echo "Creating GitHub token storage for Polybar"
+echo -e "${C_NOTE}Creating GitHub token storage for Polybar${C_RES}"
+echo -e "+ ${C_CMD}touch \"~/.config/polybar/github.token\"${C_RES}"
 touch "${HOME}/.config/polybar/github.token"
 
+echo -e "${C_INFO}All done!${C_RES}"
