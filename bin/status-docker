@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+
+$desc = [
+	0 => ['pipe', 'r'],
+	1 => ['pipe', 'w'],
+	2 => ['pipe', 'w']
+];
+
+$res = shell_exec('docker ps --format="{{.Names}}"');
+
+if ($res === null) {
+	exit(1);
+}
+
+$containers = explode("\n", $res);
+$containers = array_map('trim', array_filter($containers));
+
+if (($argv[1] ?? '') == 'count') {
+	echo count($containers);
+} else {
+	echo implode(', ', $containers);
+}
+
+

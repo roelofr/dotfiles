@@ -1,0 +1,81 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Changes the volume of the OS, and includes a phone mode to dive to a
+ * phone-appropriate volume quickly.
+ *
+ * @var [type]
+ */
+$action = (string) ($argv[1] ?? 'none');
+
+$commandValue = $volumeValue = null;
+
+switch ($action) {
+    case 'raise':
+    case 'up':
+    case 'louder':
+        $commandValue = 'set-sink-volume';
+        $volumeValue = '+2db';
+        break;
+    case 'lower':
+    case 'down':
+    case 'softer':
+        $commandValue = 'set-sink-volume';
+        $volumeValue = '-2db';
+        break;
+    case 'phone':
+        $commandValue = 'set-sink-volume';
+        $volumeValue = '-40db';
+        break;
+    case 'mute':
+        $commandValue = 'set-sink-mute';
+        $volumeValue = '1';
+        break;
+    case 'unmute':
+        $commandValue = 'set-sink-mute';
+        $volumeValue = '0';
+        break;
+    case 'toggle':
+    case 'toggle-mute':
+    case 'togglemute':
+        $commandValue = 'set-sink-mute';
+        $volumeValue = 'toggle';
+        break;
+}
+
+if ($commandValue === null || $volumeValue === null) {
+    echo "Invalid command specified.\n";
+    exit (1);
+}
+
+// Retrieve available sinks, we'll be changing all of them
+$sinkList = exec('pactl list short sinks | awk \'{print $1}\'');
+$sinks = explode('\n', trim($sinkList));
+
+// if we failed to retrive the sinks, just use '@DEFAULT_SINK@' to get
+// PulseAudio's default sink.
+if (empty($sinks)) {
+    $sinks = [0];
+}
+
+$volumeCommand = 'pactl %s %s %s';
+$hasFailed = false;
+
+// Run the command for each sink we know of.
+foreach ($sinks as $sink) {
+    $sinkCommand = sprintf(
+        $volumeCommand,
+        escapeshellarg($commandValue),
+        escapeshellarg($sink),
+        escapeshellarg($volumeValue)
+    );
+    echo "+{$sinkCommand}\n";
+    passthru($sinkCommand, $ret);
+
+    if ($ret !== 0) {
+        $hasFailed = true;
+    }
+}
+
+// Report a warning if one or more results have failed.
+exit($hasFailed ? 255 : 0);

@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+# vim: set ts=4 sw=4 sts=0 sta et :
+
+dot_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "Using \"${dot_dir}\" as base directory"
+
+polybar_files=(config github.token launch.sh)
+i3_files=(bootclean.sh config screenshot)
+fontconfig_files=(50-no-batang.conf)
+font_files=(\
+    fontawesome-pro-brands-900.otf \
+    fontawesome-pro-solid-900.otf \
+    fontawesome-pro-regular-400.otf \
+    fontawesome-pro-light-300.otf \
+)   
+bin_files=$(find "${dot_dir}/bin/" -type f -printf '%f ')
+
+function map_files() {
+    source_dir="$( realpath "$dot_dir/$1" )"
+    target_dir="${HOME}/$2"
+    shift 2
+
+    if [ ! -d "$target_dir" ]; then
+        echo "Creating directory ${target_dir}"
+        mkdir "$target_dir"
+    fi
+
+    target_dir="$( realpath "${target_dir}" )"
+
+    for file in $*
+    do
+        target="${target_dir}/$(basename "$file" )"
+        if [ -f "$target" ]
+        then
+            echo "File $(basename "$file") already exists, and is NOT a symlink"
+            continue
+        fi
+
+        if [ -N "$target" ]
+        then
+            echo "File $(basename "$file") is already a symlink" 
+            continue
+        fi
+
+        if [ ! -f "${source_dir}/${file}" ]
+        then
+            echo "Source file $( basename "$file" ) not found"
+            exit 255
+        fi
+       
+        echo "Linking ${target} to ${source_dir}/${file}" 
+        echo "ln -s \"${source_dir}/${file}\" \"${target}\""
+        ln -s "${source_dir}/${file}" "${target}"
+    done
+}
+
+
+set -e
+
+# Create links, and optionally directories
+# Polybar
+map_files polybar ".config/polybar" ${polybar_files[@]}
+
+# i3
+map_files i3 ".config/i3" ${i3_files[@]}
+
+# Redshift
+map_files redshift ".config" redshift.conf
+
+# Fontconfig and fonts
+map_files fontconfig ".config/fontconfig/conf.d" ${fontconfig_files[@]}
+map_files fonts ".local/share/fonts/" ${font_files[@]}
+
+# Binary files
+map_files "bin" "bin" ${bin_files[@]}
+
+# Create some mandatory files
+echo "Creating GitHub token storage for Polybar"
+touch "${HOME}/.config/polybar/github.token"
+

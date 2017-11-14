@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+
+const TEXT_ACTIVE = 'active';
+const TEXT_INACTIVE = 'inactive';
+const TEXT_CHANGE = 'changing';
+const TEXT_OFFLINE = 'offline';
+
+const PERC_NIGHT = 0.85;
+const PERC_DAY = 0.15;
+
+$res = exec ('pgrep -x redshift', $_, $result);
+
+if ($result != 0) {
+	echo $argv[4] ?? $argv[1] ?? TEXT_OFFLINE;
+	exit();
+}
+
+$res = exec ('xrandr --current --verbose | grep "Gamma"');
+
+if (!preg_match('/(\d\.\d+):(\d\.\d+):(\d\.\d+)/', $res, $matches)) {
+	exit(1);
+}
+
+$red = floatval($matches[1]);
+$green = floatval($matches[2]);
+$blue = floatval($matches[3]);
+
+$change = abs(1.0 - max($blue / $red, $green / $red));
+
+if ($change >= PERC_NIGHT) {
+	echo $argv[1] ?? TEXT_ACTIVE;
+} elseif ($change >= PERC_DAY) {
+	echo $argv[3] ?? TEXT_CHANGE;
+} else {
+	echo $argv[2] ?? TEXT_INACTIVE;
+}
