@@ -21,7 +21,7 @@ C_RES="$( tput sgr0 )"
 
 echo -e "${C_NOTE}Using \"${C_COMMENT}${dot_dir}${C_NOTE}\" as base directory${C_RES}"
 
-polybar_files=(config github.token launch.sh)
+polybar_files=(config launch.sh)
 i3_files=(bootclean.sh config screenshot)
 fontconfig_files=(50-no-batang.conf)
 font_files=(\
