@@ -92,6 +92,9 @@ map_files fonts ".local/share/fonts/" ${font_files[@]}
 # Binary files
 map_files "bin" "bin" ${bin_files[@]}
 
+# Zsh
+map_files "zsh" "." ".zshrc"
+
 # Create some mandatory files
 echo -e "${C_NOTE}Creating GitHub token storage for Polybar${C_RES}"
 echo -e "+ ${C_CMD}touch \"~/.config/polybar/github.token\"${C_RES}"
