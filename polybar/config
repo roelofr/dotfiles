@@ -117,7 +117,7 @@ font-4 = ${fonts.brand}
 inherit = bar/base
 
 modules-left = brightness redshift filesystem-root filesystem-home filesystem-var docker github
-modules-center = window
+modules-center =
 modules-right = memory cpu temperature battery time
 
 [bar/bottombar]
