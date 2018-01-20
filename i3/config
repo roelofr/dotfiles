@@ -1,4 +1,4 @@
-# vim:filetype=i3
+# vim: set filetype=i3 :
 # i3 config file (v4)
 
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
@@ -170,7 +170,7 @@ smart_gaps on
 # also bind ALT-L to lock the system
 #
 
-set $Locker light-locker-command -l && sleep 0.2
+set $Locker gnome-screensaver-command -l && sleep 0.1
 
 bindsym Mod1+l exec --no-startup-id $Locker
 
@@ -180,7 +180,7 @@ set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (R) re
 # Add commands
 mode "$mode_system" {
 	bindsym l exec --no-startup-id $Locker, mode "default"
-	bindsym e exec --no-startup-id i3-msg exit, mode "default"
+	bindsym e exec --no-startup-id gnome-session-quit --logout --no-prompt --force, mode "default"
 	bindsym s exec --no-startup-id systemctl suspend, mode "default"
 	bindsym h exec --no-startup-id systemctl hibernate, mode "default"
 	bindsym Shift+r exec --no-startup-id systemctl reboot, mode "default"
@@ -221,8 +221,8 @@ set $mode_editor 'Editor mode: (I) Intellij Idea (A) Atom'
 
 # Add commands
 mode "$mode_editor" {
-	bindsym i exec --no-startup-id /usr/local/bin/idea, mode "default"
-	bindsym a exec --no-startup-id /home/roelof/bin/atom, mode "default"
+	bindsym i exec --no-startup-id idea, mode "default"
+	bindsym a exec --no-startup-id atom, mode "default"
 
 	# back to normal: Enter or Escape
 	bindsym Return mode "default"
@@ -231,4 +231,14 @@ mode "$mode_editor" {
 
 # Switch to the editor mode, which can switch editors 
 bindsym $mod+e mode "$mode_editor"
+
+# Enable i3 in conjunction with GNOME
+exec --no-startup-id dbus-send \
+    --session \
+    --print-reply=literal \
+    --dest=org.gnome.SessionManager \
+    "/org/gnome/SessionManager" \
+    org.gnome.SessionManager.RegisterClient \
+    "string:i3" \
+    "string:$DESKTOP_AUTOSTART_ID"
 
