@@ -92,13 +92,18 @@ COL_R2=$(expr $COL_R1 $COL_RIGHT_ACT 6)
 COL_R3=$(expr $COL_R2 $COL_RIGHT_ACT 6)
 COL_R4=$(expr $COL_R3 $COL_RIGHT_ACT 6)
 
-PROMPT="%K{$COL_L1}%F{black} "$'\uf135'" %K{$COL_L2}%F{$COL_L1}"$'\ue0b0'"%k"
-# PROMPT+="%K{$COL_L2}%F{black} %m %K{$COL_L3}%F{$COL_L2}"$'\ue0b0'"%k"
-PROMPT+="%K{$COL_L3}%F{black} %(4~|%-1~/…/%2~|%4~) %K{black}%F{$COL_L3}"$'\ue0b0'"%k"
-#PROMPT+="%K{yellow}%F{black}  $(current_branch)%k%F{yellow}"$'\ue0b0'"%k"
-PROMPT+="%k%F{$COL_L4} $ %k%f"
+if [ "$TERM" = "xterm-256color" ]; then
+    PROMPT="%K{$COL_L1}%F{black} "$'\uf135'" %K{$COL_L2}%F{$COL_L1}"$'\ue0b0'"%k"
+    # PROMPT+="%K{$COL_L2}%F{black} %m %K{$COL_L3}%F{$COL_L2}"$'\ue0b0'"%k"
+    PROMPT+="%K{$COL_L3}%F{black} %(4~|%-1~/…/%2~|%4~) %K{black}%F{$COL_L3}"$'\ue0b0'"%k"
+    #PROMPT+="%K{yellow}%F{black}  $(current_branch)%k%F{yellow}"$'\ue0b0'"%k"
+    PROMPT+="%k%F{$COL_L4} $ %k%f"
 
-RPROMPT="%F{$COL_R1}"$'\ue0b2'"%K{$COL_R1}%F{white}  \$(current_branch)%k%f"
+    RPROMPT="%F{$COL_R1}"$'\ue0b2'"%K{$COL_R1}%F{white}  \$(current_branch)%k%f"
+else
+    PROMPT="%{$fg[yellow]%}%(4~|%-1~/…/%2~|%4~) %{$fg[green]%}$ %{$reset_color%}"
+    RPROMPT="%{$fg[cyan]%}\$(current_branch)%{$reset_color%}"
+fi
 
 ZSH_THEME_GIT_PROMPT_PREFIX="("
 ZSH_THEME_GIT_PROMPT_SUFFIX=") "
