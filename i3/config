@@ -157,6 +157,7 @@ for_window [class="Chromium" window_role="pop-up"] floating enable, border norma
 for_window [class="Gimp" window_role="gimp-startup"] floating enable, border none
 for_window [class="Soffice" instance="soffice"] floating enable, border none
 for_window [class="jetbrains-idea-ce" id=77594667 instance="sun-awt-X11-XDialogPeer" title=" "] floating enable, border none
+for_window [class="Spotify" instance="spotify" title="Spotify"] border none
 
 # Enable gaps
 gaps inner 16
