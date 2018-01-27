@@ -216,7 +216,7 @@ bindsym 0x1008ff12 exec --no-startup-id /home/roelof/bin/volume-control toggle
 bindsym 0x1008ff81 exec --no-startup-id /home/roelof/bin/volume-control phone
 
 # Toggle redshift with alt+pgup
-bindsym Mod4+0xff63 exec --no-startup-id /home/roelof/bin/redshift-toggle
+bindsym $mod+Shift+p exec --no-startup-id /home/roelof/bin/redshift-toggle
 
 set $mode_editor 'Editor mode: (I) Intellij Idea (A) Atom'
 
