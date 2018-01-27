@@ -126,3 +126,12 @@ bindkey "^[Oc" forward-word
 # For a full list of active aliases, run `alias`.
 
 source ${HOME}/.bash_aliases
+
+if [ -d /etc/profile.d ]; then
+    for i in /etc/profile.d/*.sh; do
+        if [ -r $i ] && [ $i != '/etc/profile.d/bash_completion.sh' ]; then
+            . $i
+        fi
+    done
+    unset i
+fi
