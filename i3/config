@@ -224,6 +224,7 @@ set $mode_editor 'Editor mode: (I) Intellij Idea (A) Atom'
 mode "$mode_editor" {
 	bindsym i exec --no-startup-id idea, mode "default"
 	bindsym a exec --no-startup-id atom, mode "default"
+	bindsym c exec --no-startup-id x-terminal-emulator --hide-menubar -e cava, mode "default"
 
 	# back to normal: Enter or Escape
 	bindsym Return mode "default"
