@@ -201,7 +201,7 @@ bindsym $mod+x mode "$mode_system"
 # 
 bindsym $mod+w exec --no-startup-id x-www-browser
 bindsym $mod+Shift+w exec --no-startup-id chromium
-bindsym $mod+f exec --no-startup-id thunar "${HOME}"
+bindsym $mod+f exec --no-startup-id nautilus "${HOME}"
 
 #
 # OS-level media keys
