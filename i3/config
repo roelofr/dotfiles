@@ -218,13 +218,22 @@ bindsym 0x1008ff81 exec --no-startup-id /home/roelof/bin/volume-control phone
 # Toggle redshift with alt+pgup
 bindsym $mod+Shift+p exec --no-startup-id /home/roelof/bin/redshift-toggle
 
-set $mode_editor 'Editor mode: (I) Intellij Idea (A) Atom'
+set $mode_editor Editor mode: (I) Intellij Idea (A) Atom, (V) Visual Studio Code
 
 # Add commands
 mode "$mode_editor" {
+    # I starts Intellij Idea
 	bindsym i exec --no-startup-id idea, mode "default"
+
+    # A starts Atom
 	bindsym a exec --no-startup-id atom, mode "default"
-	bindsym c exec --no-startup-id x-terminal-emulator --hide-menubar -e cava, mode "default"
+
+    # Both 'v' and 'c' start Visual Studio Code
+	bindsym v exec --no-startup-id code, mode "default"
+	bindsym c exec --no-startup-id code, mode "default"
+
+    # Hide an extra key to open Cava
+	bindsym Shift+c exec --no-startup-id x-terminal-emulator --hide-menubar -e cava, mode "default"
 
 	# back to normal: Enter or Escape
 	bindsym Return mode "default"
