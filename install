@@ -51,9 +51,19 @@ function map_files() {
     do
         echo -e "  ${C_NOTE}Evaluating ${C_INFO}${file}${C_NOTE}...${C_RES}"
         target="${target_dir}/$(basename "$file" )"
-        if [ -f "$target" ]
+
+        # Check if file is broken symlink
+        if [ -h "$target" -a ! -e "$target" ]
         then
-            echo "  ${C_NOTE}File ${C_INFO}$(basename "$file")${C_NOTE} already exists, but isn't a symlink!${C_RES}"
+            echo "  ${C_NOTE}File ${C_INFO}$(basename "$file")${C_NOTE} is broken symlink.${C_RES}"
+            echo "    ${C_INFO}deleting...${C_RES}"
+            rm "$target"
+        fi
+
+        # Check if file exists
+        if [ -e "$target" ]
+        then
+            echo "  ${C_NOTE}File ${C_INFO}$(basename "$file")${C_NOTE} already exists, skipping.${C_RES}"
             continue
         fi
 
