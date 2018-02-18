@@ -127,6 +127,13 @@ bindkey "^[Oc" forward-word
 
 source ${HOME}/.bash_aliases
 
+# Add Yarn
+yarnbin="$( yarn global bin )"
+if [ ! -z "$yarnbin" -a -d "$yarnbin" ]; then
+    export PATH="$PATH:$yarnbin"
+fi
+unset yarnbin
+
 if [ -d /etc/profile.d ]; then
     for i in /etc/profile.d/*.sh; do
         if [ -r $i ] && [ $i != '/etc/profile.d/bash_completion.sh' ]; then
