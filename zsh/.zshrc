@@ -51,7 +51,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git composer yarn colored-man-pages)
+plugins=(git composer yarn colored-man-pages laravel5)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -142,3 +142,6 @@ if [ -d /etc/profile.d ]; then
     done
     unset i
 fi
+
+# Remap Laravel 5 plugins to listen to 'la*' instead of 'la5*'
+eval $(alias -L | grep -e '^alias la5' | sed 's/alias la5/alias la/')
