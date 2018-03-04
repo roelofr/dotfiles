@@ -11,7 +11,7 @@ function apt() {
     case "$1" in
         install|uninstall|purge|autoremove|update|upgrade|clean)
             echo "+sudo apt $@"
-            sudo apt $@
+            sudo -p "Enter password for %u to $1 packages: " apt $@
             ;;
         *)
             run_command apt $@
@@ -23,6 +23,7 @@ function apt-get() {
     case "$1" in
         install|uninstall|purge|autoremove|update|upgrade|clean)
             echo "+sudo apt-get $@"
+            sudo -p "Enter password for %u to $1 packages: " apt-get $@
             ;;
         *)
             run_command apt-get $@
@@ -34,6 +35,7 @@ function service() {
     case "$1" in
         reload|restart|stop|start) 
             echo "+sudo service $@"
+            sudo -p "Password for %u to run $3 on service $2: " service $@
             ;;
         *)
             run_command service $@
