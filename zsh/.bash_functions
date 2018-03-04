@@ -9,7 +9,7 @@ function run_command() {
 
 function apt() {
     case "$1" in
-        install|uninstall|purge|autoremove|update|upgrade)
+        install|uninstall|purge|autoremove|update|upgrade|clean)
             echo "+sudo apt $@"
             sudo apt $@
             ;;
@@ -21,7 +21,7 @@ function apt() {
 
 function apt-get() {
     case "$1" in
-        install|uninstall|purge|autoremove|update|upgrade)
+        install|uninstall|purge|autoremove|update|upgrade|clean)
             echo "+sudo apt-get $@"
             ;;
         *)
