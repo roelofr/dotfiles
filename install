@@ -30,6 +30,7 @@ font_files=(\
     fontawesome-pro-regular-400.otf \
     fontawesome-pro-light-300.otf \
 )
+zsh_files=(.zshrc .bash_aliases .bash_functions)
 bin_files=$(find "${dot_dir}/bin/" -type f -printf '%f ')
 
 function map_files() {
@@ -103,7 +104,7 @@ map_files fonts ".local/share/fonts/" ${font_files[@]}
 map_files "bin" "bin" ${bin_files[@]}
 
 # Zsh
-map_files "zsh" "." ".zshrc"
+map_files "zsh" "." ${zsh_files[@]}
 
 # Create some mandatory files
 echo -e "${C_NOTE}Creating GitHub token storage for Polybar${C_RES}"

@@ -115,7 +115,14 @@ bindkey "^[Oc" forward-word
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-source ${HOME}/.bash_aliases
+
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 
 # Add Yarn
 yarnbin="$( yarn global bin )"
