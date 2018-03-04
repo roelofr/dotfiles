@@ -9,6 +9,10 @@ function run_command() {
 
 function apt() {
     case "$1" in
+        full-upgrade)
+            echo "Run full-upgrade using sudo"
+            return 1
+            ;;
         install|uninstall|purge|autoremove|update|upgrade|clean)
             echo "+sudo apt $@"
             sudo -p "Enter password for %u to $1 packages: " apt $@
@@ -21,6 +25,10 @@ function apt() {
 
 function apt-get() {
     case "$1" in
+        dist-upgrade)
+            echo "Run dist-upgrade using sudo"
+            return 1
+            ;;
         install|uninstall|purge|autoremove|update|upgrade|clean)
             echo "+sudo apt-get $@"
             sudo -p "Enter password for %u to $1 packages: " apt-get $@
