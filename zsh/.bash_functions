@@ -1,12 +1,20 @@
 # vim: set ft=sh :
 
+function run_command() {
+    command_name="$1"
+    command_exec="$( bash -c "which $command_name" )"
+    shift
+    "$command_exec" $@
+}
+
 function apt() {
     case "$1" in
         install|uninstall|purge|autoremove|update|upgrade)
+            echo "+sudo apt $@"
             sudo apt $@
             ;;
         *)
-            $( which apt ) $@
+            run_command apt $@
             ;;
     esac
 }
@@ -14,10 +22,10 @@ function apt() {
 function apt-get() {
     case "$1" in
         install|uninstall|purge|autoremove|update|upgrade)
-            sudo apt-get $@
+            echo "+sudo apt-get $@"
             ;;
         *)
-            $( which apt-get ) $@
+            run_command apt-get $@
             ;;
     esac
 }
@@ -25,10 +33,10 @@ function apt-get() {
 function service() {
     case "$1" in
         reload|restart|stop|start) 
-            sudo service $@
+            echo "+sudo service $@"
             ;;
         *)
-            $( which service ) $@
+            run_command service $@
             ;;
     esac
 }
