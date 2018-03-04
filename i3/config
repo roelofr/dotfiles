@@ -220,12 +220,13 @@ bindsym 0x1008ff81 exec --no-startup-id /home/roelof/bin/volume-control phone
 # Toggle redshift with alt+pgup
 bindsym $mod+Shift+p exec --no-startup-id /home/roelof/bin/redshift-toggle
 
-set $mode_editor Editor mode: (I) Intellij Idea (A) Atom, (V) Visual Studio Code
+set $mode_editor Editor mode: (J) JetBrains (A) Atom, (V) Visual Studio Code
+set $mode_jetbrains JetBrains picker: (I) Intellij Idea (P) PhpStorm
 
 # Add commands
 mode "$mode_editor" {
-    # I starts Intellij Idea
-	bindsym i exec --no-startup-id idea, mode "default"
+    # I starts Intellij picker
+	bindsym j mode "$mode_jetbrains"
 
     # A starts Atom
 	bindsym a exec atom, mode "default"
@@ -240,6 +241,21 @@ mode "$mode_editor" {
 	# back to normal: Enter or Escape
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
+}
+
+mode "$mode_jetbrains" {
+	bindsym i exec "/home/roelof/bin/idea", mode "default"
+	bindsym j exec "/home/roelof/bin/idea", mode "default"
+
+	bindsym p exec "/home/roelof/bin/phpstorm", mode "default"
+	bindsym s exec "/home/roelof/bin/phpstorm", mode "default"
+
+    # Up to editors: Backspace
+    bindsym Backspace mode "$mode_editor"
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+
 }
 
 # Switch to the editor mode, which can switch editors 
