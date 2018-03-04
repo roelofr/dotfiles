@@ -138,10 +138,10 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Start the desktop files listed in the AutoStart directories. This includes a
 # command to assign the compose key.
-exec dex -ae i3
+exec --no-startup-id dex -ae i3
 
 # Start the gnome settings daemon, this will handle some events such as suspension when closing the lid.
-exec gnome-settings-daemon
+exec --no-startup-id gnome-settings-daemon
 
 # Make the borders a bit bigger, but hide them entirely on tiling windows,
 # otherwise i3-gaps will vomit.
@@ -156,8 +156,10 @@ for_window [class="Chromium" window_role="pop-up"] floating enable, border norma
 
 for_window [class="Gimp" window_role="gimp-startup"] floating enable, border none
 for_window [class="Soffice" instance="soffice"] floating enable, border none
-for_window [class="jetbrains-idea-ce" id=77594667 instance="sun-awt-X11-XDialogPeer" title=" "] floating enable, border none
 for_window [class="Spotify" instance="spotify" title="Spotify"] border none
+
+# Intellij and PhpStorm
+for_window [instance="sun-awt-X11-XDialogPeer" title=" "] floating enable, border none
 
 # Enable gaps
 gaps inner 16
@@ -199,9 +201,9 @@ bindsym $mod+x mode "$mode_system"
 # OS-LEVEL HOTKEYS
 # Hotkeys to start browser, explorer and stuff like that
 # 
-bindsym $mod+w exec --no-startup-id x-www-browser
-bindsym $mod+Shift+w exec --no-startup-id chromium
-bindsym $mod+f exec --no-startup-id nautilus "${HOME}"
+bindsym $mod+w exec x-www-browser
+bindsym $mod+Shift+w exec chromium
+bindsym $mod+f exec nautilus "${HOME}"
 
 #
 # OS-level media keys
@@ -226,11 +228,11 @@ mode "$mode_editor" {
 	bindsym i exec --no-startup-id idea, mode "default"
 
     # A starts Atom
-	bindsym a exec --no-startup-id atom, mode "default"
+	bindsym a exec atom, mode "default"
 
     # Both 'v' and 'c' start Visual Studio Code
-	bindsym v exec --no-startup-id code, mode "default"
-	bindsym c exec --no-startup-id code, mode "default"
+	bindsym v exec code, mode "default"
+	bindsym c exec code, mode "default"
 
     # Hide an extra key to open Cava
 	bindsym Shift+c exec --no-startup-id x-terminal-emulator --hide-menubar -e cava, mode "default"
