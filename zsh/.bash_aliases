@@ -14,4 +14,3 @@ SSH_IDENT_BIN=/usr/src/ssh-ident/ssh-ident
 alias scp="BINARY_SSH=scp $SSH_IDENT_BIN" 
 alias rsync="BINARY_SSH=rsync $SSH_IDENT_BIN" 
 
-

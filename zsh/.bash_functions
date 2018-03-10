@@ -41,7 +41,7 @@ function apt-get() {
 
 function service() {
     case "$1" in
-        reload|restart|stop|start) 
+        reload|restart|stop|start)
             echo "+sudo service $@"
             sudo -p "Password for %u to run $3 on service $2: " service $@
             ;;
@@ -49,5 +49,19 @@ function service() {
             run_command service $@
             ;;
     esac
+}
+
+function gbrm() {
+    echo "Pruning..."
+    git fetch --prune
+
+    echo "Finding merged branches..."
+    branches=$( git branch --merged origin/develop | grep -Ev '^(\*|\s*(master|develop)$)' )
+
+   if [ -z "$branches" ]; then
+      echo "Nothing to do"
+  else
+      echo ${branches[@]} | xargs git branch -d
+  fi
 }
 
