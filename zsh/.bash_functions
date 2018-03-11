@@ -65,3 +65,48 @@ function gbrm() {
   fi
 }
 
+# Laravel5 basic command completion
+_laravel () {
+    if  _laravel_find_artisan; then
+        if [ -f $artisan ]; then
+            compadd $(php "$artisan" --raw --no-ansi list | sed "s/[[:space:]].*//g")
+        fi
+    fi
+}
+
+_laravel_find_artisan() {
+    if [ -f artisan ]; then
+        artisan=artisan
+        return 0
+    fi
+    la_git_root="$( git rev-parse --show-toplevel 2>/dev/null )"
+    artisan="$la_git_root/artisan"
+    unset la_git_root
+
+    if [ "$artisan" != "/artisan" -a -f "$artisan" ]; then
+        return 0
+    fi
+
+    artisan=
+    echo "Laravel artisan not found"
+    return 1
+}
+
+_laravel_artisan() {
+    if _laravel_find_artisan; then
+        php "$artisan" $@
+    fi
+}
+
+if [ -n "$ZSH_VERSION" ]; then
+    compdef _laravel artisan
+    compdef _laravel la
+fi
+
+#Alias
+alias la='_laravel_artisan'
+
+alias lacache='la cache:clear'
+alias laroutes='la route:list'
+alias lavendor='la vendor:publish'
+
