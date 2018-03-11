@@ -68,7 +68,7 @@ function gbrm() {
 # Laravel5 basic command completion
 _laravel () {
     if  _laravel_find_artisan; then
-        if [ -f $artisan ]; then
+        if [ -f "$artisan" ]; then
             compadd $(php "$artisan" --raw --no-ansi list | sed "s/[[:space:]].*//g")
         fi
     fi
@@ -101,6 +101,7 @@ _laravel_artisan() {
 if [ -n "$ZSH_VERSION" ]; then
     compdef _laravel artisan
     compdef _laravel la
+    compdef _laravel _laravel_artisan
 fi
 
 #Alias
