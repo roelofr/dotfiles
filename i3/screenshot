@@ -1,32 +1,43 @@
 #!/usr/bin/env bash
 
-set -xe
+set -e
 
-shot_file="${HOME}/pictures/screenshot_$(date +%Y%m%d-%H-%M-%S).jpg"
+
+function make_screenshot() {
+    shot_dir="${HOME}/pictures/"
+    shot_date="$(date +%Y%m%d-%H-%M-%S)"
+    shot_file="$shot_dir/screenshot_$shot_date.png"
+    gnome-screenshot --file="$shot_file" $@
+    if [ -f "$shot_file" ]; then
+        notify-send \
+            "Screenshot taken" \
+            "Saved as $( basename "$shot_file" ) and on clipboard"
+        xclip \
+            -selection clipboard \
+            -t image/png \
+            "$shot_file"
+    elif [ "$1" != "--area" ]; then
+        notify-send \
+            "Screenshot failed" \
+            "Failed to take screenshot"
+    fi
+}
 
 case "$1" in
     area)
-        gnome-screenshot \
-            --area \
-            --clipboard \
-            --file="$shot_file"
+        make_screenshot \
+            --area
         ;;
     window)
-        gnome-screenshot \
+        make_screenshot \
             --window \
-            --border-effect=shadow \
-            --clipboard \
-            --file="$shot_file"
+            --border-effect=shadow
         ;;
     full)
-        gnome-screenshot \
-            --clipboard \
-            --file="$shot_file"
+        make_screenshot
         ;;
     *)
         gnome-screenshot \
-            --interactive \
-            --clipboard \
-            --file="$shot_file"
+            --interactive
         ;;
 esac
