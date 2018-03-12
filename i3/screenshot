@@ -2,17 +2,31 @@
 
 set -xe
 
-DIR="${HOME}/pictures"
-FILENAME="shot_$(date +%Y%m%d-%H-%M-%S)"
+shot_file="${HOME}/pictures/screenshot_$(date +%Y%m%d-%H-%M-%S).jpg"
 
-if [ "$1" = "m" ]; then
-	maim \
-		--color='0.1,0.4,1.0,0.6' --highlight \
-		--hidecursor \
-		--select \
-		-- "${DIR}/${FILENAME}-selection.png"
-else
-	maim \
-		--hidecursor \
-		-- "${DIR}/${FILENAME}-full.png"
-fi
+case "$1" in
+    area)
+        gnome-screenshot \
+            --area \
+            --clipboard \
+            --file="$shot_file"
+        ;;
+    window)
+        gnome-screenshot \
+            --window \
+            --border-effect=shadow \
+            --clipboard \
+            --file="$shot_file"
+        ;;
+    full)
+        gnome-screenshot \
+            --clipboard \
+            --file="$shot_file"
+        ;;
+    *)
+        gnome-screenshot \
+            --interactive \
+            --clipboard \
+            --file="$shot_file"
+        ;;
+esac

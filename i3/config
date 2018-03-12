@@ -93,8 +93,9 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # Make a screenshot, or a rectangular screenshot with Shift
-bindsym Print exec /home/roelof/.config/i3/screenshot
-bindsym Shift+Print exec /home/roelof/.config/i3/screenshot s
+bindsym Print exec ~/.config/i3/screenshot full
+bindsym Shift+Print exec ~/.config/i3/screenshot area
+bindsym Control+Print exec ~/.config/i3/screenshot window
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
