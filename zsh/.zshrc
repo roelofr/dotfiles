@@ -140,3 +140,6 @@ if [ -d /etc/profile.d ]; then
     unset i
 fi
 
+
+# added by travis gem
+[ -f /home/roelof/.travis/travis.sh ] && source /home/roelof/.travis/travis.sh
