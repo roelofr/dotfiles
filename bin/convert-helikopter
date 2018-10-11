@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+# File
+source="$( realpath "$1" )"
+dest="${source}.gif"
+
+test -f "$source" || (echo "File not found!" && exit 1)
+
+DEST_N="$( tempfile -s.jpg )"
+DEST_E="$( tempfile -s.jpg )"
+DEST_S="$( tempfile -s.jpg )"
+DEST_W="$( tempfile -s.jpg )"
+
+echo "Scaling image into"
+convert "$source" -resize '256x256^' -background black -compose Copy -gravity center -extent '256x256' -quality 90 "$DEST_N"
+
+echo "Rotating image on 90 degrees"
+convert "$DEST_N" -background black -compose Copy -gravity center -rotate 90 "$DEST_E"
+convert "$DEST_N" -background black -compose Copy -gravity center -rotate 180 "$DEST_S"
+convert "$DEST_N" -background black -compose Copy -gravity center -rotate 270 "$DEST_W"
+
+echo "Creating gif"
+convert -quality 50 \
+    "$DEST_N" \
+    "$DEST_E" \
+    "$DEST_S" \
+    "$DEST_W" \
+    "$dest"
+
+echo "Deleting temps"
+rm \
+    "$DEST_N" \
+    "$DEST_E" \
+    "$DEST_S" \
+    "$DEST_W" \
+
+echo "Created file [${dest}]"
+echo "Link: file://${dest}"
