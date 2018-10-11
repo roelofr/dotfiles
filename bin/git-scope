@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-local function _check-git-scope() {
+function _check-git-scope() {
     read -p "Continue (y/n)?" choice
     case "$choice" in
     y|Y) return 0;;
@@ -22,14 +22,14 @@ scope="$1"
 currentauth="$( git config --local user.email 2>/dev/null )"
 
 # Auto-configure if $scope is empty
-if [ -z "$scope" && -z "$currentauth" ]; then
+if [ -z "$scope" -a -z "$currentauth" ]; then
     echo "Auto configure: using work setting"
     scope=work
-    if _check-git-scope || exit 128
-elif [ -z "$scope" && "$currentauth" = "roelof@038dev.nl" ]; then
+    _check-git-scope || exit 128
+elif [ -z "$scope" -a "$currentauth" = "roelof@038dev.nl" ]; then
     echo "Auto configure: using personal setting"
     scope=personal
-    if _check-git-scope || exit 128
+    _check-git-scope || exit 128
 fi
 
 # Configure local scope from
