@@ -31,7 +31,7 @@ font_files=(\
     fontawesome-pro-light-300.otf \
 )
 zsh_files=(.zshrc .bash_aliases .bash_functions)
-bin_files=$(find "${dot_dir}/bin/" -type f -printf '%f ')
+bin_files=$(find "${dot_dir}/bin/" -type f -executable -printf '%f ')
 
 function map_files() {
     source_dir="$( realpath "$dot_dir/$1" )"
