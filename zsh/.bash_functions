@@ -98,6 +98,18 @@ _laravel_artisan() {
     fi
 }
 
+bfg () {
+    BFG_FILE="$( find "${HOME}/apps/bfg" -type f -name '*.jar' -print | head -n1 )"
+
+    if [ -z "$BFG_FILE" ]; then
+        echo "BFG not installed!"
+        return 1
+    fi
+
+    java -jar "$BFG_FILE" $@
+}
+
+
 if [ -n "$ZSH_VERSION" ]; then
     compdef _laravel artisan
     compdef _laravel la
