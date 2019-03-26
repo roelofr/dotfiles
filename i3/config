@@ -151,14 +151,21 @@ for_window [class="^.*"] border normal
 for_window [tiling] border none
 
 # CUSTOM PANEL STYLING
-for_window [class="Firefox" instance="Popup"] floating enable, border none, background none
-for_window [class="Firefox" window_role="About"] floating enable, border normal
+for_window [class="Firefo*" instance="Popup"] floating enable, border none, background none
+for_window [class="Firefo*" window_role="About"] floating enable, border normal
+for_window [class="Firefo*" window_role="browser"] floating disable, border none
+
+# Keybase
+for_window [class="Keybase"] floating enable, border normal
 
 for_window [class="Chromium" window_role="pop-up"] floating enable, border normal
 
 for_window [class="Gimp" window_role="gimp-startup"] floating enable, border none
 for_window [class="Soffice" instance="soffice"] floating enable, border none
 for_window [class="Spotify" instance="spotify" title="Spotify"] border none
+
+# Steam!
+for_window [Class="Steam" instance="Steam"] floating disable, border none
 
 # Intellij and PhpStorm
 for_window [instance="sun-awt-X11-XDialogPeer" title=" "] floating enable, border none
