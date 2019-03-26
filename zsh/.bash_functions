@@ -65,6 +65,23 @@ function gbrm() {
   fi
 }
 
+function ffmpeg-gif() {
+    palette="/tmp/palette.png"
+    filters="fps=24,scale=320:-1:flags=lanczos"
+
+    ffmpeg -v warning -i $1 -vf "$filters,palettegen" -y $palette
+    ffmpeg -v warning -i $1 -i $palette -lavfi "$filters [x]; [x][1:v] paletteuse" -y $2
+}
+
+function git-authors() {
+    git ls-tree -r -z --name-only HEAD -- "$@" \
+        | xargs -0 -n1 git blame --line-porcelain HEAD \
+        | grep  "^author " \
+        | sort \
+        | uniq -c \
+        | sort -nr
+}
+
 # Laravel5 basic command completion
 _laravel () {
     if  _laravel_find_artisan; then
