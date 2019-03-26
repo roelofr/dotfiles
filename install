@@ -23,6 +23,7 @@ echo -e "${C_NOTE}Using \"${C_COMMENT}${dot_dir}${C_NOTE}\" as base directory${C
 
 polybar_files=(config launch.sh)
 i3_files=(bootclean.sh config screenshot)
+sway_files=(config)
 fontconfig_files=(50-no-batang.conf)
 font_files=(\
     fontawesome-pro-brands-900.otf \
@@ -92,6 +93,9 @@ map_files polybar ".config/polybar" ${polybar_files[@]}
 
 # i3
 map_files i3 ".config/i3" ${i3_files[@]}
+
+# sway
+map_files sway ".config/sway" ${sway_files[@]}
 
 # Redshift
 map_files redshift ".config" redshift.conf
