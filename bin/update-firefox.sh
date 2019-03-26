@@ -13,21 +13,7 @@ SCRIPT_NAME="$( basename "${BASH_SOURCE[0]}" )"
 
 # Run as root if no user was found
 if [ "$( whoami )" != "root" ]; then
-    # Clear sudo session
-    sudo -k 
-
-    # Builds script path
-    SCRIPT="$SCRIPT_DIR/$SCRIPT_NAME"
-
-    # Graphical?
-    if xset q &>/dev/null; then
-        # Prompt with gksudo
-        exec gksudo --user root --description "Update Firefox binaries" "$SCRIPT"
-    else
-        # Prompt normally
-        echo "Updating firefox..."
-        exec sudo --set-home --user=root "$SCRIPT"
-    fi
+    echo "Please run as root"
     exit 1
 fi
 
@@ -44,7 +30,6 @@ curl \
     --max-filesize $MAX_FILESIZE \
     --max-redirs 5 \
     --output "$DOWNLOAD_PATH" \
-    --progress-bar \
     --proto '=https' \
     --url "$DOWNLOAD_URL"
 
@@ -62,7 +47,7 @@ tar --recursive-unlink -jxvf "$DOWNLOAD_PATH" --strip-components=1
 
 # Update links in /usr/bin
 echo "Updating symlinks"
-rm /usr/bin/firefox
+test -f /usr/bin/firefox && rm /usr/bin/firefox
 ln -s /usr/lib/firefox/firefox /usr/bin/firefox
 
 # Update desktop file
@@ -87,6 +72,10 @@ chmod 0555 /usr/share/applications/firefox.desktop
 # Delete temp file
 echo "Deleting download file"
 rm "$DOWNLOAD_PATH"
+
+echo "Re-configuring Firefox"
+update-alternatives --install /usr/bin/gnome-www-browser gnome-www-browser /usr/bin/firefox 50
+update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/firefox 50
 
 # Done
 echo "Done"
