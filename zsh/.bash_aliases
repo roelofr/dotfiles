@@ -10,13 +10,18 @@ SSH_IDENT_BIN=/usr/src/ssh-ident/ssh-ident
 # Use ssh-ident for scp and rsyc
 alias scp="BINARY_SSH=scp $SSH_IDENT_BIN"
 alias rsync="BINARY_SSH=rsync $SSH_IDENT_BIN"
+
+# Git aliases
 alias gs='gst'
 alias cdr='cd "$( git rev-parse --show-toplevel 2>/dev/null)"'
+alias gpo='git push origin'
+alias dc='docker-compose'
 
 # Yarn alisases
 alias yad='yarn add --dev'
 alias yr='yarn run'
 alias ys='yarn start'
+alias ybu='yarn build'
 
 function cre() {
     if [ ! -f composer.lock -o ! -f composer.json ]; then
