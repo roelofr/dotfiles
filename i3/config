@@ -166,6 +166,9 @@ for_window [class="Gimp" window_role="gimp-startup"] floating enable, border non
 for_window [class="Soffice" instance="soffice"] floating enable, border none
 for_window [class="Spotify" instance="spotify" title="Spotify"] border none
 
+# Gnome settings
+for_window [instance="gnome-control-center"] floating enable, border none
+
 # Steam!
 for_window [Class="Steam" instance="Steam"] floating disable, border none
 
@@ -212,9 +215,12 @@ bindsym $mod+x mode "$mode_system"
 # OS-LEVEL HOTKEYS
 # Hotkeys to start browser, explorer and stuff like that
 #
-bindsym $mod+w exec x-www-browser
+bindsym $mod+w exec ~/Apps/Firefox/firefox-bin
 bindsym $mod+Shift+w exec chromium
 bindsym $mod+f exec nautilus "${HOME}"
+
+# Open settings with Mod + Shift + P
+bindsym $mod+Shift+p exec "${HOME}/bin/control-center"
 
 #
 # OS-level media keys
@@ -229,7 +235,7 @@ bindsym 0x1008ff12 exec --no-startup-id /home/roelof/bin/volume-control toggle
 bindsym 0x1008ff81 exec --no-startup-id /home/roelof/bin/volume-control phone
 
 # Toggle redshift with alt+pgup
-bindsym $mod+Shift+p exec --no-startup-id /home/roelof/bin/redshift-toggle
+bindsym $mod+Shift+pageUp exec --no-startup-id /home/roelof/bin/redshift-toggle
 
 set $mode_editor Editor mode: (J) JetBrains (A) Atom, (V) Visual Studio Code
 set $mode_jetbrains JetBrains picker: (I) Intellij Idea (P) PhpStorm
