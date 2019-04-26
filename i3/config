@@ -158,8 +158,10 @@ for_window [class="Firefo*" window_role="browser"] floating disable, border none
 # Keybase
 for_window [class="Keybase"] floating enable, border normal
 
+# Chrome
 for_window [class="Chromium" window_role="pop-up"] floating enable, border normal
 
+# Gimp, LibreOffice and Spotify
 for_window [class="Gimp" window_role="gimp-startup"] floating enable, border none
 for_window [class="Soffice" instance="soffice"] floating enable, border none
 for_window [class="Spotify" instance="spotify" title="Spotify"] border none
