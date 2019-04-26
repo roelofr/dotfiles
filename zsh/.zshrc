@@ -131,6 +131,7 @@ if [ ! -z "$yarnbin" -a -d "$yarnbin" ]; then
 fi
 unset yarnbin
 
+# Add system autocompletion
 if [ -d /etc/profile.d ]; then
     for i in /etc/profile.d/*.sh; do
         if [ -r $i ] && [ $i != '/etc/profile.d/bash_completion.sh' ]; then
@@ -138,6 +139,12 @@ if [ -d /etc/profile.d ]; then
         fi
     done
     unset i
+fi
+
+# Add user-autocompletion
+if [ -d "$HOME/.config/zsh-complete/" ]; then
+    fpath=("$HOME/.config/zsh-complete" $fpath)
+    autoload -U compinit && compinit
 fi
 
 

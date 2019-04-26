@@ -256,5 +256,20 @@ else
 fi
 echo -e "  ${C_COMMENT}done${C_RES}\n"
 
+# Add zsh user-level autocomplete
+echo -e "${C_COMMENT}Installing user-level zsh autocomplete${C_RES}"
+if [ ! -d "$HOME/.config/zsh-complete" ]; then
+    echo -e "  + ${C_CMD}mkdir ~/.config/zsh-complete${C_RES}"
+    mkdir "$HOME/.config/zsh-complete"
+    chmod go-rwx "$HOME/.config/zsh-complete"
 
-echo -e "${C_INFO}All done!${C_RES}"
+    echo -e "${C_NOTE}Adding Unix Pass support"
+    echo -e "  + ${C_CMD}curl https://git.zx2c4.com/…/pass.zsh-completion${C_RES}"
+    curl -o \
+        "$HOME/.config/zsh-complete/pass.zsh-completion" \
+        https://git.zx2c4.com/password-store/plain/src/completion/pass.zsh-completion
+else
+    echo "  ${C_RES}Already installed${C_RES}"
+fi
+
+echo -e "\n${C_INFO}All done!${C_RES}"
