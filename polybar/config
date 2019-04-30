@@ -1,3 +1,4 @@
+; vim: set ft=dosini:
 ;=====================================================
 ;
 ;   To learn more about how to configure Polybar
@@ -74,8 +75,8 @@ volume-off = ${self.lightgrey-alt}
 mono = "Source Code Pro:size=11;2"
 sans = "Roboto:size=11;2"
 icon = "Font Awesome 5 Pro Light:size=12:weight=light;3"
-icon2 = "Font Awesome 5 Pro Regular:size=12:weight=regular;3"
-brand = "Font Awesome 5 Pro Brands:size=12;3"
+icon2 = "Font Awesome 5 Pro Regular:size=12;3"
+brand = "Font Awesome 5 Brands:size=12;3"
 
 [custom]
 width = 100%
