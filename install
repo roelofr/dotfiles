@@ -283,4 +283,16 @@ if [ ! -f "$HOME/Apps/plantuml.jar" ]; then
 else
     echo "  ${C_RES}Already installed${C_RES}"
 fi
+
+# Add Plug for Vim
+echo -e "${C_COMMENT}Installing Plug for vim${C_RES}"
+if [ -f "$HOME/.vim/autoload/plug.vim" ]; then
+    echo "  ${C_RES}Already installed${C_RES}"
+else
+    echo -e "${C_NOTE}Installing Plug for Vim"
+    echo -e "  + ${C_CMD}curl https://raw.githubusercontent.com/…/plug.vim${C_RES}"
+
+    curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 echo -e "\n${C_INFO}All done!${C_RES}"
