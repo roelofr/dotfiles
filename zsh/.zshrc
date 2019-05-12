@@ -151,8 +151,8 @@ fi
 # added by travis gem
 [ -f /home/roelof/.travis/travis.sh ] && source /home/roelof/.travis/travis.sh
 
-
-export NPM_PACKAGES="/home/roelof/.config/npm/packages/.npm-packages"
+# Global NPM packages on a user-level
+export NPM_PACKAGES="${HOME}/.config/npm-packages/.npm-packages"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules${NODE_PATH:+:$NODE_PATH}"
 export PATH="$NPM_PACKAGES/bin:$PATH"
 # Unset manpath so we can inherit from /etc/manpath via the `manpath`
