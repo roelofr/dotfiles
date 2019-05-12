@@ -4,10 +4,20 @@ set -e
 
 
 function make_screenshot() {
-    shot_dir="$( xdg-user-dir PICTURES )"
+    # Find screenshot directory
+    shot_dir="$( xdg-user-dir PICTURES )/screenshots"
+
+    # Ensure directory exists
+    test -d "$shot_dir" || mkdir "$shot_dir"
+
+    # Determine filename
     shot_date="$(date +%Y%m%d-%H-%M-%S)"
     shot_file="$shot_dir/screenshot_$shot_date.png"
+
+    # Take screenshot
     gnome-screenshot --file="$shot_file" $@
+
+    # Push file to clipboard
     if [ -f "$shot_file" ]; then
         notify-send \
             "Screenshot taken" \
