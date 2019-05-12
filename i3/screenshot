@@ -4,7 +4,7 @@ set -e
 
 
 function make_screenshot() {
-    shot_dir="${HOME}/pictures/"
+    shot_dir="$( xdg-user-dir PICTURES )"
     shot_date="$(date +%Y%m%d-%H-%M-%S)"
     shot_file="$shot_dir/screenshot_$shot_date.png"
     gnome-screenshot --file="$shot_file" $@
