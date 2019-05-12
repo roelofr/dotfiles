@@ -272,4 +272,15 @@ else
     echo "  ${C_RES}Already installed${C_RES}"
 fi
 
+echo -e "${C_COMMENT}Installing PlantUML${C_RES}"
+if [ ! -f "$HOME/Apps/plantuml.jar" ]; then
+    test -d "$HOME/Apps" || mkdir -p "$HOME/Apps"
+
+    echo -e "${C_NOTE}Downloading JAR file"
+    echo -e "  + ${C_CMD}curl https://git.zx2c4.com/…/pass.zsh-completion${C_RES}"
+    curl -Lo "$HOME/Apps/plantuml.jar" \
+        http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
+else
+    echo "  ${C_RES}Already installed${C_RES}"
+fi
 echo -e "\n${C_INFO}All done!${C_RES}"
