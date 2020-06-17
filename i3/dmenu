@@ -1,0 +1,16 @@
+#!/bin/bash
+
+BIN_DIR="$( cd "$( dirname $( realpath "${BASH_SOURCE[0]}" ) )" && cd .. && pwd -P )"
+
+ROFI_APP=wofi
+if [ -z "$WAYLAND_DISPLAY" ]; then
+    ROFI_APP=rofi
+fi
+
+exec "$ROFI_APP" \
+    -config $BIN_DIR/deps/rofi-spotlight/rofi.rasi \
+    -display-run "" \
+    -display-drun "Launch" \
+    -combi-modi drun,run,"Global Search:$BIN_DIR/deps/rofi-spotlight/rofi-spotlight.sh" \
+    -modi combi \
+    -show 

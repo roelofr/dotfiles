@@ -1,0 +1,32 @@
+# vim: set filetype=swayconfig :
+# User hotkeys
+
+#
+# OS-LEVEL HOTKEYS
+# Hotkeys to start browser, explorer and stuff like that
+#
+bindsym $mod+w exec ~/Apps/Firefox/firefox-bin
+bindsym $mod+Shift+w exec chromium
+bindsym $mod+f exec nautilus "${HOME}"
+
+# Open settings with Mod + Shift + P
+bindsym $mod+Shift+p exec "${HOME}/bin/control-center"
+
+#
+# OS-level media keys
+#
+
+# Lower, raise and mute volume respectively
+bindsym 0x1008ff11 exec --no-startup-id /home/roelof/bin/volume-control lower
+bindsym 0x1008ff13 exec --no-startup-id /home/roelof/bin/volume-control raise
+bindsym 0x1008ff12 exec --no-startup-id /home/roelof/bin/volume-control toggle
+
+# Lower or raise brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/bin/set-brightness up
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/bin/set-brightness down
+
+# "Music" key on work PC (XF86Tools)
+bindsym 0x1008ff81 exec --no-startup-id /home/roelof/bin/volume-control phone
+
+# Toggle redshift with alt+pgup
+# bindsym $mod+Shift+pageUp exec --no-startup-id /home/roelof/bin/redshift-toggle

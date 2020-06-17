@@ -1,4 +1,4 @@
-# vim: set filetype=i3 :
+# vim: set filetype=i3config :
 # i3 config file (v4)
 
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
@@ -18,7 +18,7 @@ bindsym $mod+Shift+q kill
 bindsym Mod1+F4 kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec ~/.config/i3/dmenu
 
 # change focus
 bindsym $mod+j focus left
@@ -145,6 +145,14 @@ exec --no-startup-id dex -ae i3
 # Start the gnome settings daemon, this will handle some events such as suspension when closing the lid.
 exec --no-startup-id gnome-settings-daemon
 
+# Start the GNOME policykit daemon
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+
+# Start volumeicon, nm-applet and blueman-applet
+exec --no-startup-id volumeicon
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+
 # Make the borders a bit bigger, but hide them entirely on tiling windows,
 # otherwise i3-gaps will vomit.
 for_window [class="^.*"] border normal
@@ -163,7 +171,6 @@ for_window [class="Chromium" window_role="pop-up"] floating enable, border norma
 
 # Gimp, LibreOffice and Spotify
 for_window [class="Gimp" window_role="gimp-startup"] floating enable, border none
-for_window [class="Soffice" instance="soffice"] floating enable, border none
 for_window [class="Spotify" instance="spotify" title="Spotify"] border none
 
 # Gnome settings
@@ -174,6 +181,9 @@ for_window [Class="Steam" instance="Steam"] floating disable, border none
 
 # Intellij and PhpStorm
 for_window [instance="sun-awt-X11-XDialogPeer" title=" "] floating enable, border none
+
+# Openshot
+for_window [class="openshot" title="Tutorial"] border none, floating enable, background none
 
 # Enable gaps
 gaps inner 16

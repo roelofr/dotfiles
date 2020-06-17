@@ -1,0 +1,23 @@
+# vim: set filetype=swayconfig :
+# Editor picker via Meta+E 
+
+# Selector for editors
+set $mode_editor Editor mode: (J) JetBrains (V) Visual Studio Code, (A) Cava
+mode "$mode_editor" {
+    # I starts Intellij picker
+    bindsym j mode "$mode_jetbrains"
+
+    # Both 'v' and 'c' start Visual Studio Code
+    bindsym v exec code, mode "default"
+    bindsym c exec code, mode "default"
+
+    # 'A' starts Cava 
+    bindsym a exec --no-startup-id x-terminal-emulator --hide-menubar -e cava, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Switch to the editor mode, which can switch editors
+bindsym $mod+e mode "$mode_editor"

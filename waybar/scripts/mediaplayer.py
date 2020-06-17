@@ -1,0 +1,1 @@
+../../deps/waybar/resources/custom_modules/mediaplayer.py

@@ -22,8 +22,8 @@ C_RES="$( tput sgr0 )"
 echo -e "${C_NOTE}Using \"${C_COMMENT}${dot_dir}${C_NOTE}\" as base directory${C_RES}"
 
 polybar_files=(config launch.sh)
-i3_files=(bootclean.sh config screenshot)
-sway_files=(config)
+i3_files=(bootclean.sh config screenshot dmenu)
+sway_files=(config fuzzy-finder screenshot config.d)
 fontconfig_files=(50-no-batang.conf)
 font_files=(\
     fontawesome-pro-brands-900.otf \
@@ -75,9 +75,9 @@ function map_files() {
             continue
         fi
 
-        if [ ! -f "${source_dir}/${file}" ]
+        if [ ! -f "${source_dir}/${file}" -a ! -d "$source_dir/$file" ]
         then
-            echo "  ${C_ERR}Source file ${C_COMMENT}$( basename "$file" )${C_ERR} not found.${C_RES}"
+            echo "  ${C_ERR}Source file or directory ${C_COMMENT}$( basename "$file" )${C_ERR} not found.${C_RES}"
             exit 255
         fi
 
@@ -99,6 +99,9 @@ map_files sway ".config/sway" ${sway_files[@]}
 
 # Redshift
 map_files redshift ".config" redshift.conf
+
+# Waybar
+map_files waybar ".config/waybar" config scripts
 
 # Fontconfig and fonts
 map_files fontconfig ".config/fontconfig/conf.d" ${fontconfig_files[@]}

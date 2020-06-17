@@ -1,0 +1,17 @@
+# vim: set filetype=swayconfig :
+# Startup apps
+
+# Start the desktop files listed in the AutoStart directories. This includes a
+# command to assign the compose key.
+# exec --no-startup-id dex -ae i3
+
+# Start the gnome settings daemon, this will handle some events such as suspension when closing the lid.
+# exec --no-startup-id gnome-settings-daemon
+
+# Start the GNOME policykit daemon
+# exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+
+# Start volumeicon, nm-applet and blueman-applet
+# exec --no-startup-id volumeicon
+# exec --no-startup-id nm-applet
+# exec --no-startup-id blueman-applet
