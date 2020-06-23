@@ -1,1 +1,48 @@
-../i3/screenshot
+#!/usr/bin/env bash
+
+set -e
+
+ROOT_DIR="$( cd "$( dirname $( realpath "${BASH_SOURCE[0]}" ) )" && cd .. && pwd -P )"
+
+function make_screenshot() {
+    # Find screenshot directory
+    shot_dir="$( xdg-user-dir PICTURES )/screenshots"
+
+    # Ensure directory exists
+    test -d "$shot_dir" || mkdir "$shot_dir"
+
+    # Determine filename
+    shot_date="$(date +%Y%m%d-%H-%M-%S)"
+    shot_file="$shot_dir/screenshot_$shot_date.png"
+
+    # Take screenshot
+    $ROOT_DIR/deps/sway/contrib/grimshot save $1 "$shot_file" 
+
+    # Push file to clipboard
+    if [ -f "$shot_file" ]; then
+        xclip \
+            -selection clipboard \
+            -t image/png \
+            "$shot_file"
+    elif [ "$1" != "--area" ]; then
+        notify-send \
+            "Screenshot failed" \
+            "Failed to take screenshot"
+    fi
+}
+
+case "$1" in
+    area)
+        make_screenshot area
+        ;;
+    window)
+        make_screenshot window
+        ;;
+    full)
+        make_screenshot screen
+        ;;
+    *)
+        echo "invalid use, pick one: area, window, full"
+        exit 1 
+        ;;
+esac

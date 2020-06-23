@@ -11,3 +11,6 @@
 [submodule "waybar"]
 	path = deps/waybar
 	url = https://github.com/alexays/waybar.git
+[submodule "sway"]
+	path = deps/sway
+	url = https://github.com/swaywm/sway.git
