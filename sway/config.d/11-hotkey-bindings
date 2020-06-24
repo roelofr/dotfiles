@@ -13,17 +13,8 @@ bindsym $mod+f exec nautilus "${HOME}"
 bindsym $mod+Shift+p exec "${HOME}/bin/control-center"
 
 #
-# OS-level media keys
+# Custom keys
 #
-
-# Lower, raise and mute volume respectively
-bindsym 0x1008ff11 exec --no-startup-id /home/roelof/bin/volume-control lower
-bindsym 0x1008ff13 exec --no-startup-id /home/roelof/bin/volume-control raise
-bindsym 0x1008ff12 exec --no-startup-id /home/roelof/bin/volume-control toggle
-
-# Lower or raise brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id ~/bin/set-brightness up
-bindsym XF86MonBrightnessDown exec --no-startup-id ~/bin/set-brightness down
 
 # "Music" key on work PC (XF86Tools)
 bindsym 0x1008ff81 exec --no-startup-id /home/roelof/bin/volume-control phone
