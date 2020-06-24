@@ -82,6 +82,29 @@ function git-authors() {
         | sort -nr
 }
 
+lag ()
+{
+    GIT_ROOT="$( git rev-parse --show-toplevel 2>/dev/null )"
+    LOG_ROOT="${GIT_ROOT}/storage/logs";
+    if [ ! -d "$LOG_ROOT" ]; then
+        LOG_ROOT="${GIT_ROOT}/local/storage/logs";
+        if [ ! -d "$LOG_ROOT" ]; then
+            echo "No log directory found";
+            return 1;
+        fi;
+    fi;
+    LOG_FILE="$(
+        find "$LOG_ROOT" -type f \( -name 'laravel-*.log' -or -name 'statamic-*.log' \) 2>/dev/null \
+        | xargs ls -t 2>/dev/null \
+        | head -n1
+    )";
+    if [ -z "$LOG_FILE" -o ! -f "$LOG_FILE" ]; then
+        echo "No log file found";
+        return 1;
+    fi;
+    vim "+set autoread" + "${LOG_FILE}"
+}
+
 # Laravel5 basic command completion
 _laravel () {
     if  _laravel_find_artisan; then
@@ -96,11 +119,24 @@ _laravel_find_artisan() {
         artisan=artisan
         return 0
     fi
+    if [ -f please ]; then
+        artisan=please
+        return 0
+    fi
+
     la_git_root="$( git rev-parse --show-toplevel 2>/dev/null )"
     artisan="$la_git_root/artisan"
     unset la_git_root
 
     if [ "$artisan" != "/artisan" -a -f "$artisan" ]; then
+        return 0
+    fi
+
+    artisan="$la_git_root/please"
+    unset la_git_root
+
+    if [ "$artisan" != "/please" -a -f "$artisan" ]; then
+        echo "+php please"
         return 0
     fi
 
