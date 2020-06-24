@@ -16,14 +16,11 @@ function make_screenshot() {
     shot_file="$shot_dir/screenshot_$shot_date.png"
 
     # Take screenshot
-    $ROOT_DIR/deps/sway/contrib/grimshot save $1 "$shot_file" 
-
-    # Push file to clipboard
-    if [ -f "$shot_file" ]; then
-        xclip \
-            -selection clipboard \
+    if $ROOT_DIR/deps/sway/contrib/grimshot save $1 "$shot_file"; then
+        # Push file to clipboard
+        wl-copy \
             -t image/png \
-            "$shot_file"
+            <"$shot_file"
     elif [ "$1" != "--area" ]; then
         notify-send \
             "Screenshot failed" \
