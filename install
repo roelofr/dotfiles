@@ -103,6 +103,9 @@ map_files redshift ".config" redshift.conf
 # Waybar
 map_files waybar ".config/waybar" config scripts
 
+# Mako
+map_files mako ".config/mako" config
+
 # Fontconfig and fonts
 map_files fontconfig ".config/fontconfig/conf.d" ${fontconfig_files[@]}
 map_files fonts ".local/share/fonts/" ${font_files[@]}
