@@ -14,12 +14,6 @@
 [submodule "sway"]
 	path = deps/sway
 	url = https://github.com/swaywm/sway.git
-[submodule "clight"]
-	path = deps/clight
-	url = https://github.com/FedeDP/Clight.git
 [submodule "redshift"]
 	path = deps/redshift-wayland
 	url = https://github.com/minus7/redshift.git
-[submodule "libmodule"]
-	path = deps/libmodule
-	url = https://github.com/FedeDP/libmodule.git
