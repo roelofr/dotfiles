@@ -26,7 +26,7 @@ i3_files=(bootclean.sh config screenshot dmenu)
 sway_files=(config fuzzy-finder screenshot config.d)
 fontconfig_files=(50-no-batang.conf)
 font_files=(\
-    fontawesome-pro-brands-900.otf \
+    fontawesome-pro-brands-400.otf \
     fontawesome-pro-solid-900.otf \
     fontawesome-pro-regular-400.otf \
     fontawesome-pro-light-300.otf \
