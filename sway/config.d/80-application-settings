@@ -7,9 +7,9 @@ for_window [class="^.*"] border normal
 for_window [tiling] border none
 
 # CUSTOM PANEL STYLING
-for_window [class="Firefo*" instance="Popup"] floating enable, border none, background none
-for_window [class="Firefo*" window_role="About"] floating enable, border normal
-for_window [class="Firefo*" window_role="browser"] floating disable, border none
+for_window [class="Firefo.+" instance="Popup"] floating enable, border none, background none
+for_window [class="Firefo.+" window_role="About"] floating enable, border normal
+for_window [class="Firefo.+" window_role="browser"] floating disable, border none
 
 # Keybase
 for_window [class="Keybase"] floating enable, border normal
@@ -24,7 +24,7 @@ for_window [class="Spotify" instance="spotify" title="Spotify"] border none
 # Gnome settings
 for_window [instance="gnome-control-center"] floating enable, border none
 
-# Steam!
+# Steam
 for_window [class="Steam" instance="Steam"] floating disable, border none
 
 # Intellij and PhpStorm
@@ -33,6 +33,6 @@ for_window [instance="sun-awt-X11-XDialogPeer" title=" "] floating enable, borde
 # Openshot
 for_window [class="openshot" title="Tutorial"] border none, floating enable, background none
 
-# Polybar
-for_window [class="Polybar" instance="polybar"] floating enable
-
+# Teams
+for_window [instance="microsoft teams.*" window_role="browser-window"] floating disable
+for_window [instance="microsoft teams.*" title="Loading.+" ] floating enable, border none
