@@ -16,6 +16,10 @@ bindsym $mod+Shift+p exec "${HOME}/bin/control-center"
 # Custom keys
 #
 
+# Brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id set 10%+
+bindsym XF86MonBrightnessDown exec --no-startup-id set 10%-
+
 # "Music" key on work PC (XF86Tools)
 bindsym 0x1008ff81 exec --no-startup-id /home/roelof/bin/volume-control phone
 
