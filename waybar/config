@@ -21,6 +21,12 @@
             "urgent": "",
             "focused": "",
             "default": ""
+        },
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "10": []
         }
     },
     "sway/mode": {
@@ -29,7 +35,7 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
+            "activated": "\uf70c",
             "deactivated": ""
         }
     },
@@ -85,7 +91,7 @@
         "bat": "BAT2"
     },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "interface": "wlp3*", // (Optional) To force the use of this interface
         "format-wifi": " {essid}",
         "format-ethernet": " {ifname} ({ipaddr}/{cidr})",
         "format-linked": " {ifname} (No IP)",
@@ -98,7 +104,7 @@
         "format-bluetooth": "{icon} {volume}% {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": " {format_source}",
-        "format-source": " {volume}%",
+        "format-source": "",
         "format-source-muted": "",
         "format-icons": {
             "headphones": "",
