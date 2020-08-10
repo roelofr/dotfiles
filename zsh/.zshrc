@@ -159,3 +159,6 @@ export PATH="$NPM_PACKAGES/bin:$PATH"
 # command
 unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+
+# opam configuration
+test -r /home/roelof/.opam/opam-init/init.zsh && . /home/roelof/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
