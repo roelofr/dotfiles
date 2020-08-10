@@ -14,3 +14,6 @@
 [submodule "redshift"]
 	path = deps/redshift-wayland
 	url = https://github.com/minus7/redshift.git
+[submodule "deps/wf-recorder"]
+	path = deps/wf-recorder
+	url = https://github.com/ammen99/wf-recorder.git
