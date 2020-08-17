@@ -22,3 +22,7 @@
     path = deps/wf-recorder
     url = https://github.com/ammen99/wf-recorder.git
     ignore = dirty
+[submodule "webp-pixbuf-loader"]
+    path = deps/webp-pixbuf-loader
+    url = https://github.com/aruiz/webp-pixbuf-loader.git
+    ignore = dirty
