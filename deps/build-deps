@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+function build_webp_loader() {
+    set -e
+    cd ./webp-pixbuf-loader
+    meson build 
+    ninja -C build
+    sudo ninja -C build install
+}
+
+set -x
+
+build_webp_loader;
