@@ -3,4 +3,9 @@
         "default.pa": "ini",
         "vimrc": "viml"
     },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        ".submodules/font-awesome-pro": true,
+    }
 }
