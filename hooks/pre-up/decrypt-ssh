@@ -5,7 +5,7 @@ DOTFILE_DIR="$( realpath "${SCRIPT_DIR}/../../" )"
 
 for file in $DOTFILE_DIR/ssh/*
 do
-    if [ "$file" == "${file%.asc}" ]; then
+    if [ "$file" = "${file%.asc}" ]; then
         echo "[GPG] Ignored $( basename "$file" )"
         continue;
     fi

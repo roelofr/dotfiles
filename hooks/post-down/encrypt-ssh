@@ -16,5 +16,5 @@ do
     fi
 
     echo "[GPG] Encrypting $( basename "$file" ) ⇒ $( basename "${file}.asc" )"
-    # gpg --encrypt --interactive --armor --recipient github@roelof.io "$file"
+    gpg --encrypt --interactive --armor --recipient github@roelof.io "$file"
 done
