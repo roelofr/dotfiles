@@ -1,0 +1,193 @@
+{
+    // Themes
+    "workbench.colorTheme": "Sublime Material Theme - Dark",
+    "editor.snippetSuggestions": "top",
+    "editor.formatOnPaste": true,
+    "workbench.statusBar.visible": true,
+    "explorer.openEditors.visible": 0,
+    // Default formatting
+    "files.trimTrailingWhitespace": true,
+    "window.menuBarVisibility": "toggle",
+    "workbench.activityBar.visible": true,
+    // Complete on tab
+    "editor.tabCompletion": "on",
+    // Start with empty file
+    "workbench.startupEditor": "newUntitledFile",
+    // Find git projects here
+    "gitProjectManager.baseProjectsFolders": [
+        "/home/roelof/sites/laravel/packages",
+        "/home/roelof/sites/laravel",
+        "/home/roelof/sites/docs",
+        "/home/roelof/sites"
+    ],
+    "gitProjectManager.searchInsideProjects": false,
+    "gitProjectManager.displayProjectPath": true,
+    "gitProjectManager.supportsMercurial": false,
+    "gitProjectManager.maxDepthRecursion": 1,
+    "gitProjectManager.supportsSVN": false,
+    // File config (part 2)
+    "files.encoding": "utf8",
+    // Font faces
+    "editor.fontFamily": "'Source Code Pro', 'Dejavu Sans Mono', 'Font Awesome 5 Pro', 'Font Awesome 5 Brands'",
+    "editor.fontSize": 14,
+    "editor.lineHeight": 24,
+    // Stash changes on exit
+    "files.hotExit": "onExit",
+    "editor.scrollBeyondLastLine": true,
+    "editor.tabSize": 4,
+    // Multi cursors with Control
+    "editor.multiCursorModifier": "ctrlCmd",
+    // Fancier cursor :p
+    "editor.cursorBlinking": "smooth",
+    "extensions.ignoreRecommendations": true,
+    // Better status bar colors
+    "workbench.colorCustomizations": {
+        "[Sublime Material Theme - Dark]": {
+            "statusBar.noFolderBackground": "#263238",
+            "statusBar.background": "#263238"
+        }
+    },
+    "editor.tokenColorCustomizations": {
+        "[Sublime Material Theme - Dark]": {
+            "textMateRules": [
+                {
+                    /*
+                     * Make block comments orange
+                    */
+                    "scope": "comment.block",
+                    "settings": {
+                        "foreground": "#d17d00"
+                    }
+                },
+                {
+                    // Make line comments bright orange
+                    "scope": "comment.line",
+                    "settings": {
+                        "foreground": "#faa82c"
+                    }
+                }
+            ]
+        }
+    },
+    // Disable some tracking,
+    "vscode-mysql.enableTelemetry": false,
+    // Day night theme switching
+    "dayNightThemeSwitcher.dayTheme": "Solarized Light",
+    "dayNightThemeSwitcher.nightTheme": "Sublime Material Theme - Dark",
+    "search.exclude": {
+        "**/vendor": true
+    },
+    "blade.format.enable": true,
+    "breadcrumbs.enabled": true,
+    "eslint.packageManager": "yarn",
+    "workbench.editor.closeEmptyGroups": false,
+    // SVG preview
+    "svg.preview.background": "transparent",
+    "window.titleBarStyle": "custom",
+    "files.autoSave": "off",
+    // Clock
+    "clock.updateInterval": 10000,
+    "clock.active": true,
+    "clock.iconName": "no-icon",
+    "clock.alignment": "Right",
+    "clock.format": "HH:MM",
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "css.lint.idSelector": "error",
+    "css.lint.ieHack": "error",
+    "terminal.integrated.profiles.linux": {
+        "oh-my-zsh": {
+            "path": "/bin/zsh",
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "oh-my-zsh",
+    "html-css-class-completion.enableEmmetSupport": true,
+    "editor.suggestSelection": "first",
+    "files.associations": {
+        "*.phpt": "php",
+        "*.php.stub": "php",
+        ".php_cs.dist": "php",
+        ".php_cs": "php",
+        "vimrc": "viml"
+    },
+    "docker.dockerComposeBuild": false,
+    // ESLint
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "vue",
+    ],
+    "zenMode.hideTabs": false,
+    "workbench.sideBar.location": "left",
+    "workbench.enableExperiments": false,
+    "update.showReleaseNotes": false,
+    "git.autofetch": true,
+    "files.insertFinalNewline": true,
+    "eslint.format.enable": true,
+    "editor.renderWhitespace": "none",
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "debug.onTaskErrors": "abort",
+    "phpunit.colors": "",
+    "todo.embedded.provider": "ag",
+    "todo.file.name": ".todo",
+    "[vue]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "vetur.validation.templateProps": true,
+    "vetur.useWorkspaceDependencies": true,
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "svg.preview.mode": "svg",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "material-icon-theme.showWelcomeMessage": false,
+    "settingsSync.ignoredExtensions": [
+        "ms-vscode-remote.remote-wsl"
+    ],
+    "atlascode.jira.jqlList": [
+        {
+            "id": "5e438398-9114-464e-8091-e740151c4bf4",
+            "enabled": true,
+            "name": "My motivozwolle Issues",
+            "query": "assignee = currentUser() AND resolution = Unresolved ORDER BY lastViewed DESC",
+            "siteId": "09404669-705f-4d15-98bb-cf75ac95b040",
+            "monitor": true
+        }
+    ],
+    "atlascode.bitbucket.issues.explorerEnabled": false,
+    "atlascode.bitbucket.statusbar.enabled": false,
+    "markdown.extension.preview.autoShowPreviewToSide": false,
+    "markdown.extension.toc.updateOnSave": false,
+    "atlascode.bitbucket.pipelines.hideFiltered": true,
+    "atlascode.bitbucket.pipelines.branchFilters": [
+        "author:currentUser"
+    ],
+    "atlascode.bitbucket.pipelines.explorerEnabled": false,
+    "atlascode.jira.explorer.nestSubtasks": false,
+    "atlascode.jira.statusbar.enabled": true,
+    "atlascode.jira.statusbar.showProduct": false,
+    "atlascode.jira.statusbar.showUser": false,
+    "atlascode.jira.statusbar.showLogin": false,
+    "atlascode.showWelcomeOnInstall": false,
+    "atlascode.helpExplorerEnabled": false,
+    "markdown.extension.tableFormatter.normalizeIndentation": true,
+    "markdown.extension.toc.levels": "2..4",
+    "php-cs-fixer.allowRisky": true,
+    "php-cs-fixer.config": ".php_cs;.php_cs.dist;.phpcs_laravel.php",
+    "php-cs-fixer.executablePath": "${workspaceFolder}/vendor/bin/php-cs-fixer",
+    "php-cs-fixer.lastDownload": 0,
+    "php-cs-fixer.onsave": true,
+    "php-cs-fixer.pathMode": "intersection",
+    "[php]": {
+        "editor.defaultFormatter": "junstyle.php-cs-fixer"
+    },
+    "php-cs-fixer.documentFormattingProvider": false,
+    "php-cs-fixer.autoFixByBracket": false,
+    "php.suggest.basic": false,
+    "intelephense.environment.phpVersion": "7.4.14",
+    "update.mode": "manual",
+    "docker.showStartPage": false,
+    "redhat.telemetry.enabled": false
+}

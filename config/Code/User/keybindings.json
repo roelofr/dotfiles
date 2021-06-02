@@ -1,0 +1,25 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    {
+        "key": "ctrl+\\",
+        "command": "-workbench.action.splitEditor"
+    },
+    {
+        "key": "ctrl+q",
+        "command": "-workbench.action.quit"
+    },
+    {
+        "key": "ctrl+shift+q",
+        "command": "workbench.action.quit"
+    },
+    {
+        "key": "alt+t",
+        "command": "phpunit.TestNearest",
+        "when": "editorTextFocus && editorLangId == 'php'"
+    },
+    {
+        "key": "shift+alt+t",
+        "command": "phpunit.RerunLastTest",
+        "when": "editorTextFocus && editorLangId == 'php'"
+    }
+]
