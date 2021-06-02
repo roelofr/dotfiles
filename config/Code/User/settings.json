@@ -108,7 +108,6 @@
         "*.php.stub": "php",
         ".php_cs.dist": "php",
         ".php_cs": "php",
-        "vimrc": "viml"
     },
     "docker.dockerComposeBuild": false,
     // ESLint
