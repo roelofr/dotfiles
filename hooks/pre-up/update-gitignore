@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DOTFILE_DIR="$( realpath "${SCRIPT_DIR}/../../" )"
+
+echo "Downloading gitignore file"
+curl \
+    --location \
+    --output - \
+    --output - \
+    https://gist.githubusercontent.com/octocat/9257657/raw/.gitignore \
+    https://gitignore.io/api/linux,sublimetext,phpstorm \
+    > $DOTFILE_DIR/config/git/ignore

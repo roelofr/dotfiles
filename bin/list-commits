@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -e
+
+project_dirs=(~/sites ~/sites/laravel ~/sites/laravel/packages)
+git_dirs=()
+
+for root in ${project_dirs[@]}; do
+	for project in $root/*; do
+		test -d "$project" || continue
+		test -d "$project/.git" || continue
+
+		git_dirs+=("$project")
+	done
+done
+
+{
+	for dir in ${git_dirs[@]}; do
+		dirname=$( basename "$dir" )
+		( 
+		cd "$dir"
+		git -P log \
+			--color \
+			--max-count=50 \
+			--all \
+			--committer="$( git config user.email )" \
+			--format="%Cred%ai %Cgreen${dirname} %Creset%s"
+		)
+	done
+} | sort
+

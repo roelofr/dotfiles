@@ -1,28 +1,8 @@
-[submodule "deps/rofi-spotlight"]
-    path = deps/rofi-spotlight
-    url = https://github.com/manilarome/rofi-spotlight
-    ignore = dirty
 [submodule "font-awesome-pro"]
-    path = deps/font-awesome-pro
-    url = git@github.com:fortawesome/font-awesome-pro.git
+	path = .submodules/font-awesome-pro
+	url = git@github.com:fortawesome/font-awesome-pro.git
     ignore = dirty
-[submodule "waybar"]
-    path = deps/waybar
-    url = https://github.com/alexays/waybar.git
-    ignore = dirty
-[submodule "sway"]
-    path = deps/sway
-    url = https://github.com/swaywm/sway.git
-    ignore = dirty
-[submodule "redshift"]
-    path = deps/redshift-wayland
-    url = https://github.com/minus7/redshift.git
-    ignore = dirty
-[submodule "wf-recorder"]
-    path = deps/wf-recorder
-    url = https://github.com/ammen99/wf-recorder.git
-    ignore = dirty
-[submodule "webp-pixbuf-loader"]
-    path = deps/webp-pixbuf-loader
-    url = https://github.com/aruiz/webp-pixbuf-loader.git
+[submodule "vim-plug"]
+	path = .submodules/vim-plug
+	url = https://github.com/junegunn/vim-plug.git
     ignore = dirty

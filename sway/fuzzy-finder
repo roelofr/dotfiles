@@ -1,9 +1,0 @@
-#!/bin/bash
-
-ROOT_DIR="$( cd "$( dirname $( realpath "${BASH_SOURCE[0]}" ) )" && cd .. && pwd -P )"
-
-exec wofi \
-   --conf $ROOT_DIR/wofi/config \
-   --style $ROOT_DIR/wofi/theme.css \
-    --prompt "Fuzzy search" \
-    --show "drun,run"

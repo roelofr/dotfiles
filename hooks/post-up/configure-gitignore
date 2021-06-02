@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "Configuring global gitignore for use by Git"
+git config --global core.excludesfile "${HOME}/.config/git/ignore"

@@ -1,4 +1,0 @@
-# vim: set filetype=swayconfig :
-# Load wallpaper
-
-exec ~/.azotebg

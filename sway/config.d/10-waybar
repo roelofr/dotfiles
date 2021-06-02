@@ -1,8 +1,0 @@
-# vim: set filetype=swayconfig :
-# Bar 
-
-# Register waybar
-bar {
-    swaybar_command waybar
-}
-

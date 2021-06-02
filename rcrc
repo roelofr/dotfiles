@@ -1,0 +1,1 @@
+EXCLUDES="deps:* submodules:* /:*.md /:install"

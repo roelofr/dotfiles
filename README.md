@@ -1,10 +1,19 @@
 # Roelof's Dotfiles
 
-These are some of my dotfiles, which I use for my laptop running Ubuntu 20.04
-with Swaywm.
+These are my dotfiles with configs I like.
 
-The `deps/` folder contains projects I discovered along the way, maybe they can
-help you out too. Some are required for the `install` script to function (such
-as font-awesome).
+Maintained using [RCM][rcm], but you're free to use whatever tool you like.
 
-Licensed under GNU GPL v3
+## Installing
+
+1. Install [RCM][rcm-install]
+2. Recursively clone this repo (`git clone --recursive https://github.com/roelofr/dotfiles.git ~/.dotfiles`)
+3. Run the installer (`~/.dotfiles/install`)
+
+## License
+
+Licensed under [GNU GPL v3][license].
+
+[rcm]: https://github.com/thoughtbot/rcm
+[rcm-install]: https://github.com/thoughtbot/rcm#installation
+[license]: ./LICENSE.md
