@@ -1,1 +1,2 @@
 EXCLUDES="deps:* submodules:* /:*.md /:install"
+COPY_ALWAYS="local/share/fonts/*.otf"

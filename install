@@ -2,11 +2,11 @@
 # vim: set ts=4 sw=4 sts=0 sta et :
 
 # Check for rcrc
-if ! type rcrc > /dev/null 2>&1; then
+if ! type rcup > /dev/null 2>&1; then
     echo "Please install rcm"
     exit 1
 fi
 
 # Update files
 export RCRC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/rcrc"
-rcup -i -d .
+rcup -i -v -d .
