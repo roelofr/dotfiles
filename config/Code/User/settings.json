@@ -5,41 +5,54 @@
     "editor.formatOnPaste": true,
     "workbench.statusBar.visible": true,
     "explorer.openEditors.visible": 0,
+
     // Default formatting
     "files.trimTrailingWhitespace": true,
     "window.menuBarVisibility": "toggle",
     "workbench.activityBar.visible": true,
+
     // Complete on tab
     "editor.tabCompletion": "on",
+
     // Start with empty file
     "workbench.startupEditor": "newUntitledFile",
+
     // Find git projects here
     "gitProjectManager.baseProjectsFolders": [
         "/home/roelof/sites/laravel/packages",
         "/home/roelof/sites/laravel",
         "/home/roelof/sites/docs",
-        "/home/roelof/sites"
+        "/home/roelof/sites",
+        "/home/roelof/dev",
+        "/home/roelof/work"
     ],
     "gitProjectManager.searchInsideProjects": false,
     "gitProjectManager.displayProjectPath": true,
     "gitProjectManager.supportsMercurial": false,
     "gitProjectManager.maxDepthRecursion": 1,
     "gitProjectManager.supportsSVN": false,
+    "gitProjectManager.maxDepthRecursion": 1,
+
     // File config (part 2)
     "files.encoding": "utf8",
+
     // Font faces
     "editor.fontFamily": "'Source Code Pro', 'Dejavu Sans Mono', 'Font Awesome 5 Pro', 'Font Awesome 5 Brands'",
     "editor.fontSize": 14,
     "editor.lineHeight": 24,
+
     // Stash changes on exit
     "files.hotExit": "onExit",
     "editor.scrollBeyondLastLine": true,
     "editor.tabSize": 4,
+
     // Multi cursors with Control
     "editor.multiCursorModifier": "ctrlCmd",
+
     // Fancier cursor :p
     "editor.cursorBlinking": "smooth",
     "extensions.ignoreRecommendations": true,
+
     // Better status bar colors
     "workbench.colorCustomizations": {
         "[Sublime Material Theme - Dark]": {
@@ -69,8 +82,10 @@
             ]
         }
     },
+
     // Disable some tracking,
     "vscode-mysql.enableTelemetry": false,
+
     // Day night theme switching
     "dayNightThemeSwitcher.dayTheme": "Solarized Light",
     "dayNightThemeSwitcher.nightTheme": "Sublime Material Theme - Dark",
@@ -81,10 +96,14 @@
     "breadcrumbs.enabled": true,
     "eslint.packageManager": "yarn",
     "workbench.editor.closeEmptyGroups": false,
+
     // SVG preview
     "svg.preview.background": "transparent",
+    "latex-workshop.message.update.show": false,
     "window.titleBarStyle": "custom",
+    "yarn.runInTerminal": true,
     "files.autoSave": "off",
+
     // Clock
     "clock.updateInterval": 10000,
     "clock.active": true,
@@ -102,14 +121,19 @@
     },
     "terminal.integrated.defaultProfile.linux": "oh-my-zsh",
     "html-css-class-completion.enableEmmetSupport": true,
+    "githubPullRequests.telemetry.enabled": false,
     "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "csharpfixformat.style.spaces.beforeParenthesis": false,
     "files.associations": {
         "*.phpt": "php",
         "*.php.stub": "php",
         ".php_cs.dist": "php",
         ".php_cs": "php",
+        ".php_cs.dist": "php",
     },
     "docker.dockerComposeBuild": false,
+
     // ESLint
     "eslint.validate": [
         "javascript",
@@ -120,7 +144,9 @@
     "workbench.sideBar.location": "left",
     "workbench.enableExperiments": false,
     "update.showReleaseNotes": false,
+    "extensions.showRecommendationsOnlyOnDemand": true,
     "git.autofetch": true,
+    "phpcs.showSources": true,
     "files.insertFinalNewline": true,
     "eslint.format.enable": true,
     "editor.renderWhitespace": "none",
@@ -128,6 +154,11 @@
         "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
     "debug.onTaskErrors": "abort",
+    "githubIssues.ignoreUserCompletionTrigger": [
+        "python",
+        "php",
+        "blade"
+    ],
     "phpunit.colors": "",
     "todo.embedded.provider": "ag",
     "todo.file.name": ".todo",
@@ -141,6 +172,20 @@
     },
     "svg.preview.mode": "svg",
     "diffEditor.ignoreTrimWhitespace": false,
+    "githubIssues.queries": [
+        {
+            "label": "My Issues",
+            "query": "default"
+        },
+        {
+            "label": "Created Issues",
+            "query": "author:${user} state:open repo:${owner}/${repository} sort:created-desc"
+        },
+        {
+            "label": "All open issues",
+            "query": "state:open  repo:${owner}/${repository} sort:created-asc"
+        }
+    ],
     "material-icon-theme.showWelcomeMessage": false,
     "settingsSync.ignoredExtensions": [
         "ms-vscode-remote.remote-wsl"
@@ -171,22 +216,29 @@
     "atlascode.jira.statusbar.showLogin": false,
     "atlascode.showWelcomeOnInstall": false,
     "atlascode.helpExplorerEnabled": false,
+    "codespaces.accountProvider": "GitHub",
+    "terminal.integrated.allowChords": false,
+    "terminal.integrated.localEchoExcludePrograms": [
+        "vim",
+        "vi",
+        "nano",
+        "tmux",
+        "less"
+    ],
     "markdown.extension.tableFormatter.normalizeIndentation": true,
     "markdown.extension.toc.levels": "2..4",
+
     "php-cs-fixer.allowRisky": true,
     "php-cs-fixer.config": ".php_cs;.php_cs.dist;.phpcs_laravel.php",
     "php-cs-fixer.executablePath": "${workspaceFolder}/vendor/bin/php-cs-fixer",
     "php-cs-fixer.lastDownload": 0,
     "php-cs-fixer.onsave": true,
     "php-cs-fixer.pathMode": "intersection",
-    "[php]": {
-        "editor.defaultFormatter": "junstyle.php-cs-fixer"
-    },
     "php-cs-fixer.documentFormattingProvider": false,
     "php-cs-fixer.autoFixByBracket": false,
     "php.suggest.basic": false,
-    "intelephense.environment.phpVersion": "7.4.14",
-    "update.mode": "manual",
-    "docker.showStartPage": false,
-    "redhat.telemetry.enabled": false
+
+    "[php]": {
+        "editor.defaultFormatter": "junstyle.php-cs-fixer"
+    },
 }
