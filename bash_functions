@@ -29,7 +29,7 @@ function gbrm() {
     git fetch --prune
 
     echo "Finding merged branches..."
-    branches=$( git branch --merged origin/develop | grep -Ev '^(\*|\s*(master|develop)$)' )
+    branches=$( git branch --merged origin/develop | grep -Ev '^(\*|\s*(main|master|develop)$)' )
 
    if [ -z "$branches" ]; then
       echo "Nothing to do"
