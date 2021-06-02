@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+echo "Downloading PlantUML"
+
+curl \
+    --location \
+    --output=$HOME/bin/plantuml.jar \
+    http://sourceforge.net/projects/plantuml/files/plantuml.1.2021.7.jar/download
