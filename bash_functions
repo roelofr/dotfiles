@@ -143,9 +143,10 @@ if [ -n "$ZSH_VERSION" ]; then
 fi
 
 #Alias
-alias la='_laravel_artisan'
+alias art='_laravel_artisan'
+alias pa='_laravel_artisan'
 
-alias lacache='la cache:clear'
-alias laroutes='la route:list'
-alias lavendor='la vendor:publish'
-
+function la() {
+    echo "No, you'll want to use art"
+    exit 1
+}
