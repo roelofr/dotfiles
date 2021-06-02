@@ -1,7 +1,8 @@
 {
     "files.associations": {
         "default.pa": "ini",
-        "vimrc": "viml"
+        "vimrc": "viml",
+        "rcrc": "ini",
     },
     "files.exclude": {
         "**/.git": true,
