@@ -14,5 +14,5 @@ do
     fi
 
     echo "[GPG] Decrypting $( basename "$file" ) ⇒ $( basename "${file%.asc}" )"
-    gpg --decrypt --armor "$file"
+    gpg --decrypt --armor --output "${file%.asc}" "$file"
 done
