@@ -1,2 +1,5 @@
 EXCLUDES="deps:* submodules:* ssh:*.asc *.md install"
+
 COPY_ALWAYS="local/share/fonts/*.otf config/Code/User/settings.json ssh/*"
+
+UNDOTTED="bin"
