@@ -25,11 +25,11 @@ curl \
     --output "$TEMPDATA" \
     --header "User-Agent: Roelof's Wallpaper Auto-Updater (cURL; +https://github.com/roelofr/)" \
     --header "Authorization: Client-ID ${UNSPLASH_CLIENT_ID}" \
-    "https://api.unsplash.com/photos/random/?query=shapes&orientation=landscape&featured=true"
+    "https://api.unsplash.com/photos/random/?query=pattern&orientation=landscape"
 
 IMAGE_DESC="$( jq -r '.description' "$TEMPDATA" )"
 AUTHOR_NAME="$( jq -r '.user.name' "$TEMPDATA" )"
-IMAGE_URL="$( jq -r '.urls.raw' "$TEMPDATA" )"
+IMAGE_URL="$( jq -r '.urls.full' "$TEMPDATA" )"
 IMAGE_ID="$( jq -r '.id' "$TEMPDATA" )"
 
 echo "Downloading photo by \"${AUTHOR_NAME}\":"
@@ -45,7 +45,7 @@ curl \
     --fail \
     --silent \
     --output "$TEMPFILE" \
-    "${IMAGE_URL}&fm=jpg&w=1080&h=1920&fit=crop"
+    ${IMAGE_URL}
 echo "Downloaded \"${IMAGE_URL}\" to \"${TEMPFILE}\""
 
 # Send download request
@@ -60,10 +60,12 @@ echo "Marked image as downloaded 😊"
 
 # Convert image
 echo "Resizing image to ensure cleanlyness"
-convert "${TEMPFILE}" -resize 1920x1080 -quality 95 "${TEMPFILE}"
+convert "${TEMPFILE}" -resize 1920x1080 -quality 98 "${TEMPFILE}"
 
-echo "Removing all metadata"
-exiftool -overwrite_original -all= "${TEMPFILE}"
+if type exiftool > /dev/null 2>&1; then
+    echo "Removing all metadata"
+    exiftool -overwrite_original -all= "${TEMPFILE}"
+fi
 
 echo "Moving to ~/Pictures/Wallpapers"
 test -d "$HOME/Pictures/Wallpapers" || mkdir -p "$HOME/Pictures/Wallpapers"
