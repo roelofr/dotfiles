@@ -25,7 +25,7 @@ curl \
     --output "$TEMPDATA" \
     --header "User-Agent: Roelof's Wallpaper Auto-Updater (cURL; +https://github.com/roelofr/)" \
     --header "Authorization: Client-ID ${UNSPLASH_CLIENT_ID}" \
-    "https://api.unsplash.com/photos/random/?query=nature+dark&orientation=landscape&featured=true"
+    "https://api.unsplash.com/photos/random/?query=shapes&orientation=landscape&featured=true"
 
 IMAGE_DESC="$( jq -r '.description' "$TEMPDATA" )"
 AUTHOR_NAME="$( jq -r '.user.name' "$TEMPDATA" )"
