@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+DATABASE="$1"
+USERNAME="${2:-$DATABASE}"
+PASSWORD="${3:-$USERNAME}"
+
+if [ -z "$DATABASE" ]; then
+    echo "Usage $0 <database> [<username>] [<password>]"
+    exit 1
+fi
+
+SCRIPT_FILE=$( tempfile )
+cat > $SCRIPT_FILE <<DOC
+CREATE USER IF NOT EXISTS '${USERNAME}'@'localhost' IDENTIFIED BY '${PASSWORD}';
+ALTER USER '${USERNAME}'@'localhost' IDENTIFIED BY '${PASSWORD}';
+
+CREATE DATABASE IF NOT EXISTS \`${DATABASE}\`;
+
+GRANT ALL ON  \`${DATABASE}\`.* TO '${USERNAME}'@'localhost';
+GRANT ALL ON  \`${DATABASE}_%\`.* TO '${USERNAME}'@'localhost';
+DOC
+
+echo "Running query as [$( whoami )]..."
+mysql \
+    --user=$( whoami ) \
+    --password \
+    --show-warnings \
+    --verbose \
+    --execute="source $SCRIPT_FILE"
+
+OK=$?
+
+rm $SCRIPT_FILE
+
+if [ $OK -eq 0 ]; then
+    echo "Created user [${USERNAME}] identified by [${PASSWORD}]"
+    echo "Full access granted to [${DATABASE}] and [${DATABASE}_*]"
+    exit 0;
+fi
+
+echo 'Failed to create user, check log above for details'
+exit $OK
