@@ -31,3 +31,7 @@ function cre() {
     echo 'running composer install'
     composer install --no-suggest --no-interaction
 }
+
+# Config for Facade Ignition (anti eye-burn)
+IGNITION_THEME=auto
+IGNITION_EDITOR=vscode

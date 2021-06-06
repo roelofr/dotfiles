@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# vim: set ft=sh :
+# vim: set ft=sh si sw=4 ts=4 :
 
 function run_command() {
     command_name="$1"
