@@ -3,7 +3,7 @@
 
 # Use vim
 export EDITOR=$( which vim )
-export VISUAL=$( which vim )
+export VISUAL=$EDITOR
 
 # Git aliases
 alias gs='gst'
@@ -12,10 +12,10 @@ alias gpo='git push origin'
 alias dc='docker-compose'
 
 # Yarn alisases
-alias yad='yarn add --dev'
-alias yr='yarn run'
-alias ys='yarn start'
-alias ybu='yarn build'
+alias yad='npm install --save-dev'
+alias yr='npm run'
+alias ys='npm start'
+alias ybu='npm build'
 
 function cre() {
     if [ ! -f composer.lock -o ! -f composer.json ]; then
