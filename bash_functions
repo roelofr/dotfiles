@@ -138,7 +138,8 @@ bfg () {
 
 if [ -n "$ZSH_VERSION" ]; then
     compdef _laravel artisan
-    compdef _laravel la
+    compdef _laravel art
+    compdef _laravel pa
     compdef _laravel _laravel_artisan
 fi
 
