@@ -2,7 +2,7 @@
 
 set -e
 
-project_dirs=(~/sites ~/sites/laravel ~/sites/laravel/packages)
+project_dirs=(~/dev ~/work ~/Sites)
 git_dirs=()
 
 for root in ${project_dirs[@]}; do
@@ -17,7 +17,7 @@ done
 {
 	for dir in ${git_dirs[@]}; do
 		dirname=$( basename "$dir" )
-		( 
+		(
 		cd "$dir"
 		git -P log \
 			--color \
