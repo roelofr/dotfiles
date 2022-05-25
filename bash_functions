@@ -18,6 +18,18 @@ function git-authors() {
         | sort -nr
 }
 
+# Move to the root of the Git directory.
+function cdr() {
+    GIT_ROOT="$( git rev-parse --show-toplevel 2>/dev/null )"
+    if [ -z "$GIT_ROOT" ]; then
+        echo "Failed to find git root!"
+        return 1
+    fi
+
+    cd "$GIT_ROOT"
+    return 0
+}
+
 lag ()
 {
     GIT_ROOT="$( git rev-parse --show-toplevel 2>/dev/null )"
