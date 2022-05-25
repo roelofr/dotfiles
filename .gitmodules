@@ -1,8 +1,7 @@
-[submodule "font-awesome-pro"]
-	path = .submodules/font-awesome-pro
-	url = git@github.com:fortawesome/font-awesome-pro.git
-    ignore = dirty
 [submodule "vim-plug"]
 	path = .submodules/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
     ignore = dirty
+[submodule "font-awesome-pro-5"]
+	path = .submodules/font-awesome-pro-5
+	url = https://github.com/FortAwesome/Font-Awesome-Pro.git

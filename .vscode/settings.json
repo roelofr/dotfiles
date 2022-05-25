@@ -1,4 +1,5 @@
 {
+    "git.ignoreLimitWarning": true,
     "files.associations": {
         "default.pa": "ini",
         "vimrc": "viml",
@@ -7,6 +8,7 @@
     "files.exclude": {
         "**/.git": true,
         "**/.DS_Store": true,
-        ".submodules/font-awesome-pro": true,
-    }
+        ".submodules/font-awesome-pro-5/*": true,
+        ".submodules/font-awesome-pro-5/README.md": false,
+    },
 }
