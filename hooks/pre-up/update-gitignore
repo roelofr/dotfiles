@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-DOTFILE_DIR="$( realpath "${SCRIPT_DIR}/../../" )"
+DOTFILE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && git rev-parse --show-toplevel )"
 
 test -f "$DOTFILE_DIR/config/git/ignore" && exit 0
 
