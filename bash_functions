@@ -1,43 +1,6 @@
 #!/usr/bin/env bash
 # vim: set ft=sh si sw=4 ts=4 :
 
-function run_command() {
-    command_name="$1"
-    command_exec="$( bash -c "which $command_name" )"
-    shift
-    "$command_exec" $@
-}
-
-function apt() {
-    case "$1" in
-        full-upgrade)
-            echo "Run full-upgrade using sudo"
-            return 1
-            ;;
-        install|uninstall|purge|autoremove|update|upgrade|clean)
-            echo "+sudo apt $@"
-            sudo -p "Enter password for %u to $1 packages: " apt $@
-            ;;
-        *)
-            run_command apt $@
-            ;;
-    esac
-}
-
-function gbrm() {
-    echo "Pruning..."
-    git fetch --prune
-
-    echo "Finding merged branches..."
-    branches=$( git branch --merged origin/develop | grep -Ev '^(\*|\s*(main|master|develop)$)' )
-
-   if [ -z "$branches" ]; then
-      echo "Nothing to do"
-  else
-      echo ${branches[@]} | xargs git branch -d
-  fi
-}
-
 function ffmpeg-gif() {
     palette="/tmp/palette.png"
     filters="fps=24,scale=320:-1:flags=lanczos"
@@ -88,83 +51,44 @@ _laravel () {
 }
 
 _laravel_find_artisan() {
-    if [ -f artisan ]; then
+    # Check if an artisan file exists in the current dir
+    if [ -s artisan ]; then
         artisan=artisan
         return 0
     fi
-    if [ -f please ]; then
-        artisan=please
-        return 0
+
+    # Find the git root to determine any other files
+    git_root="$( git rev-parse --show-toplevel 2>/dev/null )"
+
+    # If no git root is present, just stop, let's not waste ops
+    if [ -z "$git_root" ]; then
+        echo "Laravel Artisan file not found"
+        return 1
     fi
-
-    la_git_root="$( git rev-parse --show-toplevel 2>/dev/null )"
-    artisan="$la_git_root/artisan"
-    unset la_git_root
-
-    if [ "$artisan" != "/artisan" -a -f "$artisan" ]; then
-        return 0
-    fi
-
-    artisan="$la_git_root/please"
-    unset la_git_root
-
-    if [ "$artisan" != "/please" -a -f "$artisan" ]; then
-        echo "+php please"
-        return 0
-    fi
-
+    
+    # Find the artisan file in the git root
+    for artisan in "$git_root/artisan" "$git_root/vendor/bin/canvas" "$git_root/please";
+    do
+        if [ -s "$artisan" ]; then
+            return 0;
+        fi
+    done;
+    
+    # No artisan file. was found :(
     artisan=
     echo "Laravel artisan not found"
     return 1
 }
 
-_laravel_artisan() {
+# Alias `pa` to use Laravel Artisan or binary
+pa() {
     if _laravel_find_artisan; then
         php "$artisan" $@
     fi
 }
 
-bfg () {
-    BFG_FILE="$( find "${HOME}/apps/bfg" -type f -name '*.jar' -print | head -n1 )"
-
-    if [ -z "$BFG_FILE" ]; then
-        echo "BFG not installed!"
-        return 1
-    fi
-
-    java -jar "$BFG_FILE" $@
-}
-
-
+# Bind _laravel autocomplete in zsh
 if [ -n "$ZSH_VERSION" ]; then
-    compdef _laravel artisan
-    compdef _laravel art
     compdef _laravel pa
-    compdef _laravel _laravel_artisan
 fi
 
-#Alias
-alias art='_laravel_artisan'
-alias pa='_laravel_artisan'
-
-function la() {
-    echo "No, you'll want to use art"
-    exit 1
-}
-
-
-##
-## Bind to the Windows GPG agent if likely running in WSL
-## and such as socket exists
-##
-if uname -r | grep -q '(microsoft|windows)'; then
-	SOCAT_PID_FILE=$HOME/.misc/socat-gpg.pid
-
-	if [[ -f $SOCAT_PID_FILE ]] && kill -0 $(cat $SOCAT_PID_FILE); then
-	   : # already running
-	else
-	    rm -f "$HOME/.gnupg/S.gpg-agent"
-	    (trap "rm $SOCAT_PID_FILE" EXIT; socat UNIX-LISTEN:"$HOME/.gnupg/S.gpg-agent,fork" EXEC:'/mnt/c/Users/Roelof/bin/npiperelay.exe -ei -ep -s -a "C:/Users/Roelof/AppData/Roaming/gnupg/S.gpg-agent"',nofork </dev/null &>/dev/null) &
-	    echo $! >$SOCAT_PID_FILE
-	fi
-fi
