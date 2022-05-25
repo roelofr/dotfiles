@@ -2,7 +2,7 @@
 # vim: set ft=sh si sw=4 ts=4 :
 
 function ffmpeg-gif() {
-    palette="/tmp/palette.png"
+    palette=`tempnam`
     filters="fps=24,scale=320:-1:flags=lanczos"
 
     ffmpeg -v warning -i $1 -vf "$filters,palettegen" -y $palette
@@ -77,7 +77,7 @@ _laravel_find_artisan() {
         echo "Laravel Artisan file not found"
         return 1
     fi
-    
+
     # Find the artisan file in the git root
     for artisan in "$git_root/artisan" "$git_root/vendor/bin/canvas" "$git_root/please";
     do
@@ -85,7 +85,7 @@ _laravel_find_artisan() {
             return 0;
         fi
     done;
-    
+
     # No artisan file. was found :(
     artisan=
     echo "Laravel artisan not found"
@@ -97,6 +97,13 @@ pa() {
     if _laravel_find_artisan; then
         php "$artisan" $@
     fi
+}
+
+# Fix for me using gs instead of gst, which is actually ghostscript
+function gs() {
+    # Throw a red tantrum
+    echo -e "\e[31mDon't use \e[1;32mgs\e[0;31m, use \e[1;32mgst\e[0;31m instead\e[0;0m"
+    return 1
 }
 
 # Bind _laravel autocomplete in zsh

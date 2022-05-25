@@ -1,3 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
+
+if [ ! -s "$HOME/bin/plantuml.jar" ]; then
+    echo 'Failed to find ~/bin/plantuml.jar'
+    exit 1
+fi
+
+set -e
 
 java -jar "$HOME/bin/plantuml.jar" "$@"

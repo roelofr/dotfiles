@@ -6,26 +6,26 @@ project_dirs=(~/dev ~/work ~/Sites)
 git_dirs=()
 
 for root in ${project_dirs[@]}; do
-	for project in $root/*; do
-		test -d "$project" || continue
-		test -d "$project/.git" || continue
+    for project in $root/*; do
+        test -d "$project" || continue
+        test -d "$project/.git" || continue
 
-		git_dirs+=("$project")
-	done
+        git_dirs+=("$project")
+    done
 done
 
 {
-	for dir in ${git_dirs[@]}; do
-		dirname=$( basename "$dir" )
-		(
-		cd "$dir"
-		git -P log \
-			--color \
-			--max-count=50 \
-			--all \
-			--committer="$( git config user.email )" \
-			--format="%Cred%ai %Cgreen${dirname} %Creset%s"
-		)
-	done
+    for dir in ${git_dirs[@]}; do
+        dirname=$( basename "$dir" )
+        (
+        cd "$dir"
+        git -P log \
+            --color \
+            --max-count=50 \
+            --all \
+            --committer="$( git config user.email )" \
+            --format="%Cred%ai %Cgreen${dirname} %Creset%s"
+        )
+    done
 } | sort
 

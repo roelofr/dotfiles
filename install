@@ -7,7 +7,7 @@ if ! type rcup > /dev/null 2>&1; then
         echo "Please install rcm"
         exit 1
     fi
-    
+
     if [ "$( whoami )" = "root" ]; then
         echo "Installing rcm (dotfile manager)"
         apt update && apt install -y rcm
