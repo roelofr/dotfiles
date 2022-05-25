@@ -2,24 +2,25 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="agnoster"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Disable automatic updates alltogether
-zstyle ':omz:update' mode disabled
+# Uncomment one of the following lines to change the auto-update behavior
+zstyle ':omz:update' mode disabled  # disable automatic updates
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to change the command execution time
@@ -33,8 +34,9 @@ HIST_STAMPS="%d %b, %H:%M"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
@@ -52,15 +54,8 @@ source $ZSH/oh-my-zsh.sh
 # Load INGRC if present
 [[ -s ~/.ingrc ]] && source ~/.ingrc
 
-# Load Homebrew if present
-[[ -d ~/.homebrew/bin ]] && export PATH="$PATH:~/.homebrew/bin"
-
-# Add User Binaries if present
-[[ -d ~/bin ]] && export PATH="~/bin:$PATH"
-
-# Alias and function files
-[[ -s ~/.bash_functions ]] && source ~/.bash_functions
-[[ -s ~/.bash_aliases ]] && source ~/.bash_aliases
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
 # Add system autocompletion
 if [ -d /etc/profile.d ]; then
@@ -72,13 +67,13 @@ if [ -d /etc/profile.d ]; then
     unset i
 fi
 
-# Add user-autocompletion
+# Add user-autocompletion, if present
 if [ -d "$HOME/.config/zsh-complete/" ]; then
     fpath=("$HOME/.config/zsh-complete" $fpath)
     autoload -U compinit && compinit
 fi
 
-# Global NPM packages on a user-level
+# Global NPM packages on a user-level, only if nvm isn't present
 if ! which nvm >/dev/null 2>&1; then
     export NPM_CONFIG_PREFIX="$HOME/.npm-global"
     export PATH="$PATH:$HOME/.npm-global/bin"
@@ -93,3 +88,11 @@ fi
 # command
 unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+
+# Alias files
+[[ -s ~/.bash_functions ]] && source ~/.bash_functions
+[[ -s ~/.bash_aliases ]] && source ~/.bash_aliases
+
+# Add possible binary folders
+[[ -d ~/bin ]] && export PATH="~/bin:$PATH"
+[[ -d ~/.homebrew/bin ]] && export PATH="$PATH:~/.homebrew/bin"
