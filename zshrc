@@ -94,5 +94,5 @@ export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 [[ -s ~/.bash_aliases ]] && source ~/.bash_aliases
 
 # Add possible binary folders
-[[ -d ~/bin ]] && export PATH="~/bin:$PATH"
-[[ -d ~/.homebrew/bin ]] && export PATH="$PATH:~/.homebrew/bin"
+[[ -d ~/bin ]] && export PATH="$HOME/bin:$PATH"
+[[ -d ~/.homebrew/bin ]] && export PATH="$PATH:$HOME/.homebrew/bin"

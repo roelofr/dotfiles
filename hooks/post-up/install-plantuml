@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Block script on MacOS
+if [ $( uname -s ) == "Darwin" ]; then
+    echo "You're on MacOS, not installing PlantUML"
+    exit 0
+fi
+
 test -f "$HOME/bin/plantuml.jar" && exit 0
 
 echo "Downloading PlantUML"

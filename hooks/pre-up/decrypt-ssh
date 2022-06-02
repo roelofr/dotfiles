@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Block script on MacOS
+if [ $( uname -s ) == "Darwin" ]; then
+    echo "You're on MacOS, not touching SSH keys"
+    exit 0
+fi
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOTFILE_DIR="$( realpath "${SCRIPT_DIR}/../../" )"
 

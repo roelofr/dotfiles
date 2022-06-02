@@ -4,11 +4,15 @@ DOTFILE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && git rev-parse --show-to
 
 test -f "$DOTFILE_DIR/config/git/ignore" && exit 0
 
+DEVICE_TYPE=linux
+if [ $( uname -s ) == "Darwin" ]; then
+    DEVICE_TYPE=macos
+fi
+
 echo "Downloading gitignore file"
 curl \
     --location \
     --output - \
     --output - \
-    https://gist.githubusercontent.com/octocat/9257657/raw/.gitignore \
-    https://gitignore.io/api/linux,macos,sublimetext,phpstorm,vscode \
+    "https://gitignore.io/api/${DEVICE_TYPE},sublimetext,phpstorm,vscode" \
     > "$DOTFILE_DIR/config/git/ignore"
