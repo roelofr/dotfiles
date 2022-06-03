@@ -74,7 +74,7 @@ _laravel_find_artisan() {
 
     # If no git root is present, just stop, let's not waste ops
     if [ -z "$git_root" ]; then
-        echo "Laravel Artisan file not found"
+        echo -e "\033[1;31mNo artisan file found!\033[0m"
         return 1
     fi
 
@@ -82,13 +82,14 @@ _laravel_find_artisan() {
     for artisan in "$git_root/artisan" "$git_root/vendor/bin/canvas" "$git_root/please";
     do
         if [ -s "$artisan" ]; then
+            echo -e "\033[0mForwarding to \033[0;34m$( basename "$artisan" )\033[0m in \033[0;33m$git_root\033[0m"
             return 0;
         fi
     done;
 
     # No artisan file. was found :(
     artisan=
-    echo "Laravel artisan not found"
+    echo -e "\033[1;31mNo artisan file found!\033[0m"
     return 1
 }
 

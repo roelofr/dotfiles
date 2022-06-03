@@ -6,7 +6,6 @@ export EDITOR=$( which vim )
 export VISUAL=$EDITOR
 
 # Git aliases
-alias cdr='cd "$( git rev-parse --show-toplevel 2>/dev/null)"'
 alias gpo='git push origin'
 alias dc='docker-compose'
 

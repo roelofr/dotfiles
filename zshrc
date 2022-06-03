@@ -74,15 +74,28 @@ if [ -d "$HOME/.config/zsh-complete/" ]; then
 fi
 
 # Global NPM packages on a user-level, only if nvm isn't present
-if ! which nvm >/dev/null 2>&1; then
+export NVM_DIR="$HOME/.nvm"
+if which nvm > /dev/null 2>&1; then
+    # noop
+elif [ -d "$NVM_DIR" ]; then
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+else
     export NPM_CONFIG_PREFIX="$HOME/.npm-global"
     export PATH="$PATH:$HOME/.npm-global/bin"
 fi
 
-# Hide user when on ING network, on Quintor devices or on my own cool laptop
-if [[ `whoami` =~ [a-zA-Z]{2}[0-9]{2}[a-zA-Z]{2} || `hostname` == *quintor.local || `hostname` == "dionysus.roelof.io" ]]; then
+# Determine default user for devices.
+CURRENT_USER="$( whoami )"
+CURRENT_HOST="$( hostname )"
+if [[ "$CURRENT_USER" =~ "^[a-zA-Z]{2}[0-9]{2}[a-zA-Z]{2}$" ]]; then
     export DEFAULT_USER=`whoami`
+elif [[ "$CURRENT_HOST" =~ "^[a-z]+-pc\.quintor\.local$" ]]; then
+    export DEFAULT_USER=rroos
+elif [[ "$CURRENT_HOST" =~ "^[a-z]+\.roelof\.io$" ]]; then
+    export DEFAULT_USER="roelof"
 fi
+
 
 # Unset manpath so we can inherit from /etc/manpath via the `manpath`
 # command
