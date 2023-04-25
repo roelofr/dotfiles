@@ -92,7 +92,7 @@ if [[ "$CURRENT_USER" =~ "^[a-zA-Z]{2}[0-9]{2}[a-zA-Z]{2}$" ]]; then
     export DEFAULT_USER=`whoami`
 elif [[ "$CURRENT_HOST" =~ "^[a-z]+-pc\.quintor\.local$" ]]; then
     export DEFAULT_USER=rroos
-elif [[ "$CURRENT_HOST" =~ "^[a-z]+\.roelof\.io$" ]]; then
+elif [[ "$CURRENT_HOST" =~ "^[a-z]+\.roelofr\.dev$" ]]; then
     export DEFAULT_USER="roelof"
 fi
 
@@ -109,3 +109,4 @@ export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 # Add possible binary folders
 [[ -d ~/bin ]] && export PATH="$HOME/bin:$PATH"
 [[ -d ~/.homebrew/bin ]] && export PATH="$PATH:$HOME/.homebrew/bin"
+[[ -d /opt/homebrew/bin ]] && export PATH="$PATH:/opt/homebrew/bin"
