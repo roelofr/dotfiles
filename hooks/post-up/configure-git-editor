@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Check if Visual Studio Code is installed
+if ! which code > /dev/null 2>&1; then
+  echo "Visual Studio Code is not installed, not altering Git config"
+  exit 0
+fi
+
+# Set Git to use Visual Studio Code
+git config --global core.editor "$( which code ) --wait --reuse-window"
+
+# Set Git to use Visual Studio Code as a diff tool (and register it)
+git config --global diff.tool vscode
+git config --global difftool.vscode.cmd "$( which code ) --wait  --reuse-window --diff \$LOCAL \$REMOTE"
+
+echo "Git will now use Visual Studio Code"
+exit 0
