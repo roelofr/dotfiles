@@ -110,3 +110,6 @@ export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 [[ -d ~/bin ]] && export PATH="$HOME/bin:$PATH"
 [[ -d ~/.homebrew/bin ]] && export PATH="$PATH:$HOME/.homebrew/bin"
 [[ -d /opt/homebrew/bin ]] && export PATH="$PATH:/opt/homebrew/bin"
+
+# Mount Jabba
+[ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
