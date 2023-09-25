@@ -111,5 +111,11 @@ export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 [[ -d ~/.homebrew/bin ]] && export PATH="$PATH:$HOME/.homebrew/bin"
 [[ -d /opt/homebrew/bin ]] && export PATH="$PATH:/opt/homebrew/bin"
 
+# Load McFly
+which mcfly 2>&1 > /dev/null && eval "$( mcfly init zsh )" || true
+
 # Mount Jabba
 [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
+
+# Connect SDKMan
+[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && source "$HOME/.sdkman/bin/sdkman-init.sh"
