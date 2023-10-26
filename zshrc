@@ -126,3 +126,8 @@ fi
 # Connect SDKMan
 export SDKMAN_DIR="$HOME/.sdkman"
 [ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# When started from an IDE, check if there's an .sdkmanrc file in the current dir, and load it
+if [ -f "$( pwd )/.sdkmanrc" ]; then
+	sdk env || true
+fi
