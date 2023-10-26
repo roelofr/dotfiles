@@ -112,3 +112,23 @@ if [ -n "$ZSH_VERSION" ]; then
     compdef _laravel pa
 fi
 
+# MacOS helpers
+if [ "$( uname -s )" = "Darwin" ]; then
+    app_installed() {
+        local appNameOrBundleId=$1
+
+        # Check if the user is trying to check for an app name (ends in .app or doesn't contain a period).
+        if [[ $appNameOrBundleId =~ \.[aA][pP][pP]$ || $appNameOrBundleId =~ ^[^.]+$ ]]; then
+            osascript -e "id of application \"$appNameOrBundleId\"" >/dev/null 2>&1
+            return $?
+        else
+            osascript -e "id of application id \"$appNameOrBundleId\"" >/dev/null 2>&1
+            return $?
+        fi
+    }
+else
+    app_installed() {
+        # No idea how to support this on Linux
+        return 1
+    }
+fi

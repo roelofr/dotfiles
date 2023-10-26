@@ -117,5 +117,12 @@ which mcfly 2>&1 > /dev/null && eval "$( mcfly init zsh )" || true
 # Mount Jabba
 [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
 
+# Add Python to path if present in Homebrew
+PYTHON_PREFIX="$( brew --prefix python )"
+if [ ! -z "$PYTHON_PREFIX" ]; then
+	export PATH="$PATH:$PYTHON_PREFIX/libexec/bin"
+fi
+
 # Connect SDKMan
+export SDKMAN_DIR="$HOME/.sdkman"
 [ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && source "$HOME/.sdkman/bin/sdkman-init.sh"
