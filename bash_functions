@@ -82,7 +82,6 @@ _laravel_find_artisan() {
     for artisan in "$git_root/artisan" "$git_root/vendor/bin/canvas" "$git_root/please";
     do
         if [ -s "$artisan" ]; then
-            echo -e "\033[0mForwarding to \033[0;34m$( basename "$artisan" )\033[0m in \033[0;33m$git_root\033[0m"
             return 0;
         fi
     done;
