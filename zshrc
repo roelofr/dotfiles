@@ -118,9 +118,11 @@ which mcfly 2>&1 > /dev/null && eval "$( mcfly init zsh )" || true
 [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
 
 # Add Python to path if present in Homebrew
-PYTHON_PREFIX="$( brew --prefix python )"
-if [ ! -z "$PYTHON_PREFIX" ]; then
-	export PATH="$PATH:$PYTHON_PREFIX/libexec/bin"
+if which brew 2>&1 > /dev/null; then
+	PYTHON_PREFIX="$( brew --prefix python )"
+	if [ ! -z "$PYTHON_PREFIX" ]; then
+		export PATH="$PATH:$PYTHON_PREFIX/libexec/bin"
+	fi
 fi
 
 # Connect SDKMan
