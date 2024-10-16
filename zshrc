@@ -41,10 +41,10 @@ HIST_STAMPS="%d %b, %H:%M"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     colored-man-pages
-    composer
     git
     mvn
     node
+    docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh

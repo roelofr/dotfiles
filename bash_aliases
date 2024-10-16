@@ -7,7 +7,6 @@ export VISUAL=$EDITOR
 
 # Git aliases
 alias gpo='git push origin'
-alias dc='docker-compose'
 
 # Config for Facade Ignition (anti eye-burn)
 IGNITION_THEME=auto
