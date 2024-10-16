@@ -133,3 +133,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 if [ -f "$( pwd )/.sdkmanrc" ]; then
 	sdk env || true
 fi
+
+# Load additional autocompletions
+which ng > /dev/null 2>&1 && source <(ng completion script)
